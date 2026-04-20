@@ -1,6 +1,9 @@
 import json
 import urllib.error
 import urllib.request
+import logging
+
+logger = logging.getLogger(__name__)
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -178,8 +181,8 @@ def checkout(request):
                         email_recipients,
                         fail_silently=True,
                     )
-                except Exception:
-                    pass
+                except Exception as e:
+                    logger.error(f"Failed to send email notification for order {order.order_id}: {str(e)}")
 
             whatsapp_numbers = getattr(settings, 'WHATSAPP_NOTIFICATION_NUMBERS', [])
             whatsapp_version = getattr(settings, 'WHATSAPP_CLOUD_API_VERSION', 'v17.0')
@@ -210,7 +213,8 @@ def checkout(request):
                     )
                     try:
                         urllib.request.urlopen(request_obj, timeout=10)
-                    except (urllib.error.HTTPError, urllib.error.URLError, ValueError):
+                    except (urllib.error.HTTPError, urllib.error.URLError, ValueError) as e:
+                        logger.error(f"Failed to send WhatsApp notification to {number}: {str(e)}")
                         continue
 
             carts.delete()  # حذف السلة بعد الطلب

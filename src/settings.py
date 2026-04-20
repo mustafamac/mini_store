@@ -12,21 +12,27 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables
+load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-iilpb&_5yt1*i9f5#emis3b%s=100u!j_#v2cw@^3l@4=iuwdy'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-iilpb&_5yt1*i9f5#emis3b%s=100u!j_#v2cw@^3l@4=iuwdy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
+_allowed_hosts = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts.split(',') if host.strip()]
 
 
 # Application definition
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,10 +84,11 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR}/db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -144,9 +152,15 @@ WHATSAPP_ACCESS_TOKEN = os.environ.get('WHATSAPP_ACCESS_TOKEN', '')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security Settings for Production
-SECURE_SSL_REDIRECT = False
-COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 COOKIE_HTTPONLY = True
 COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_AGE = 1209600  # 2 weeks
-CSRF_TRUSTED_ORIGINS = ['https://*.example.com', 'http://localhost:*', 'http://127.0.0.1:*']
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
+
+_trusted_origins = os.environ.get('CSRF_TRUSTED_ORIGINS', 'https://*.example.com,http://localhost:8000,http://127.0.0.1:8000,https://*.onrender.com')
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in _trusted_origins.split(',') if origin.strip()]
