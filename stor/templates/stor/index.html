@@ -1,0 +1,319 @@
+{% extends 'stor/base.html' %}
+{% load static %}
+
+{% block title %}ITQAN Tech — المتجر الإلكتروني{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* ===== PRODUCTS SLIDER SECTION ===== */
+    .products-slider-section {
+        padding: 60px 0 100px;
+        min-height: 60vh;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .section-title {
+        font-size: clamp(28px, 5vw, 42px);
+        font-weight: 800;
+        color: var(--ink);
+        letter-spacing: -1px;
+    }
+
+    .section-title span {
+        color: var(--accent);
+    }
+
+    .slider-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        cursor: grab;
+        touch-action: pan-y;
+    }
+
+    .slider-container:active {
+        cursor: grabbing;
+    }
+
+    .slider-track {
+        padding-bottom: 20px;
+    }
+
+    .product-card {
+        min-width: 220px;
+    }
+
+    @media (max-width: 900px) {
+        .slider-container {
+            margin-left: -12px;
+            margin-right: -12px;
+        }
+
+        .product-card {
+            width: 72vw;
+            min-width: auto;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .slider-track {
+            gap: 16px;
+        }
+
+        .product-card {
+            width: 82vw;
+        }
+    }
+
+    .slider-track {
+        display: inline-flex;
+        gap: 24px;
+        padding: 12px 0 20px;
+        will-change: transform;
+        user-select: none;
+    }
+
+    /* ===== PRODUCT CARD ===== */
+    .product-card {
+        min-width: 240px;
+        width: clamp(220px, 24%, 260px);
+        flex-shrink: 0;
+        background: var(--surface-card);
+        border-radius: 22px;
+        display: flex;
+        flex-direction: column;
+        padding: 22px 18px 24px;
+        position: relative;
+        transition: transform 0.3s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: var(--white);
+        border-radius: 999px;
+        padding: 5px 12px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--ink);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        z-index: 2;
+    }
+
+    .badge.new { background: var(--accent); color: var(--ink); }
+    .badge.discount { background: #e74c3c; color: #fff; }
+
+    .card-img-wrap {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        background: #f8f8f8;
+    }
+
+    .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+    }
+
+    .product-card:hover .card-img-wrap img {
+        transform: scale(1.05);
+    }
+
+    .product-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.4;
+        margin-bottom: 10px;
+        flex: 1;
+    }
+
+    .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+    }
+
+    .prices {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .old-price {
+        font-size: 13px;
+        color: var(--ink-muted);
+        text-decoration: line-through;
+    }
+
+    .current-price {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--ink);
+    }
+
+    .card-arrow {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--accent-light);
+        color: var(--accent-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        flex-shrink: 0;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .product-card:hover .card-arrow {
+        background: var(--accent);
+        color: var(--white);
+        transform: rotate(-45deg);
+    }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: var(--ink-muted);
+    }
+
+    @media (max-width: 640px) {
+        .product-card {
+            width: 200px;
+            padding: 18px 14px 22px;
+        }
+        .products-slider-section {
+            padding: 40px 0 60px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="products-slider-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">منتجاتنا <span>المميزة</span></h2>
+        </div>
+    </div>
+
+    <div class="slider-container" id="productsSlider">
+        <div class="slider-track" id="productsTrack">
+            {% for product in products %}
+            <a href="{% url 'stor:product_detail' product.slug %}" class="product-card">
+                {% if product.is_new %}
+                    <div class="badge new">جديد</div>
+                {% elif product.discount_percentage %}
+                    <div class="badge discount">خصم {{ product.discount_percentage }}%</div>
+                {% endif %}
+                <div class="card-img-wrap">
+                    {% if product.product_image %}
+                        <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" loading="lazy">
+                    {% else %}
+                        <div style="width:100%;height:100%;background:#f0f0f0;border-radius:16px;"></div>
+                    {% endif %}
+                </div>
+                <h3 class="product-title">{{ product.product_name }}</h3>
+                <div class="price-row">
+                    <div class="prices">
+                        {% if product.orignal_price and product.orignal_price > product.discounted_price %}
+                            <span class="old-price">{{ product.orignal_price }} ج.م</span>
+                        {% endif %}
+                        <span class="current-price">{{ product.discounted_price|default:product.orignal_price }} ج.م</span>
+                    </div>
+                    <div class="card-arrow"><i class="fas fa-arrow-left"></i></div>
+                </div>
+            </a>
+            {% empty %}
+            <div class="empty-state" style="width:100%; text-align:center;">
+                <p>لا توجد منتجات متاحة حالياً.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    (function() {
+        const slider = document.getElementById('productsSlider');
+        const track = document.getElementById('productsTrack');
+        if (!slider || !track) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let startOffset = 0;
+        let offset = 0;
+
+        // Make it infinite by duplicating items if needed (optional)
+        // We'll just allow smooth drag without infinite loop for simplicity
+        const getMaxOffset = () => {
+            const containerWidth = slider.clientWidth;
+            const trackWidth = track.scrollWidth;
+            return Math.min(0, containerWidth - trackWidth);
+        };
+
+        const clamp = (value) => Math.min(0, Math.max(getMaxOffset(), value));
+
+        const applyTransform = (instant = false) => {
+            track.style.transition = instant ? 'none' : 'transform 0.1s linear';
+            track.style.transform = `translate3d(${offset}px, 0, 0)`;
+        };
+
+        const onDragStart = (clientX) => {
+            isDragging = true;
+            startX = clientX;
+            startOffset = offset;
+            slider.style.cursor = 'grabbing';
+        };
+
+        const onDragMove = (clientX) => {
+            if (!isDragging) return;
+            const delta = clientX - startX;
+            offset = clamp(startOffset + delta);
+            applyTransform(true);
+        };
+
+        const onDragEnd = () => {
+            isDragging = false;
+            slider.style.cursor = 'grab';
+        };
+
+        // Mouse events
+        slider.addEventListener('mousedown', (e) => onDragStart(e.clientX));
+        window.addEventListener('mousemove', (e) => onDragMove(e.clientX));
+        window.addEventListener('mouseup', onDragEnd);
+
+        // Touch events
+        slider.addEventListener('touchstart', (e) => onDragStart(e.touches[0].clientX), { passive: true });
+        slider.addEventListener('touchmove', (e) => onDragMove(e.touches[0].clientX), { passive: true });
+        slider.addEventListener('touchend', onDragEnd);
+
+        // Optional: add arrow buttons for navigation
+        // You can add next/prev buttons if needed, but per your request only slider
+    })();
+</script>
+{% endblock %}

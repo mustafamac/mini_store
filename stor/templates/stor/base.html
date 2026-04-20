@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ITQAN Tech{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-turquoise: #1F9EAA;
+            --brand-orange: #F18722;
+            --brand-dark: #6B6B6B;
+            --surface: #f7f7f7;
+            --surface-card: #ffffff;
+            --text: #222222;
+            --text-muted: #6B6B6B;
+            --border: rgba(107, 107, 107, 0.12);
+            --radius: 22px;
+            --shadow: 0 24px 80px rgba(35, 65, 92, 0.08);
+            --shadow-sm: 0 14px 40px rgba(35, 65, 92, 0.08);
+            --accent: var(--brand-turquoise);
+            --accent-light: rgba(31, 158, 170, 0.12);
+            --accent-dark: #155f68;
+            --ink: var(--brand-dark);
+            --ink-muted: var(--text-muted);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 18px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand-block {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--brand-dark);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.0;
+            text-align: right;
+            gap: 1px;
+        }
+
+        .brand-name {
+            display: inline-flex;
+            gap: 0.12rem;
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-name .letter {
+            color: var(--brand-turquoise);
+        }
+
+        .brand-name .letter-orange {
+            color: var(--brand-orange);
+        }
+
+        .brand-sub {
+            color: var(--brand-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-arabic {
+            color: var(--brand-dark);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+        }
+
+        .logo-mark {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(31, 158, 170, 0.15), rgba(241, 135, 34, 0.12));
+            color: var(--brand-turquoise);
+            font-weight: 900;
+            font-size: 44px;
+            position: sticky   ;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: var(--brand-dark);
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-orange);
+        }
+
+        .content {
+            flex: 1;
+            padding: 32px 24px;
+            width: min(1200px, calc(100% - 48px));
+            margin: 0 auto;
+            min-height: calc(100vh - 140px);
+        }
+
+        .footer {
+            background: var(--brand-dark);
+            color: #d8e5f1;
+            text-align: center;
+            padding: 28px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--brand-orange);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .social-icons {
+            margin-top: 12px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 18px;
+            color: #d8e5f1;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background: var(--brand-orange);
+            border-color: var(--brand-orange);
+            color: #fff;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #d8801b;
+            border-color: #d8801b;
+        }
+
+        .btn-success {
+            background: var(--brand-teal);
+            border-color: var(--brand-teal);
+            color: #ffffff;
+        }
+
+        .btn-success:hover,
+        .btn-success:focus {
+            background: #0fa7c7;
+            border-color: #0fa7c7;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-control {
+            border-radius: 14px;
+            border: 1px solid rgba(17, 39, 63, 0.12);
+            box-shadow: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--brand-teal);
+            box-shadow: 0 0 0 0.2rem rgba(0, 179, 216, 0.12);
+        }
+
+        .container {
+            max-width: 1140px;
+        }
+
+        @media (max-width: 992px) {
+            .header {
+                padding: 18px 20px;
+            }
+
+            .content {
+                width: calc(100% - 40px);
+                padding: 26px 18px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+                padding: 18px 20px;
+            }
+
+            .brand-block {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                padding: 16px 16px;
+            }
+
+            .brand-name {
+                font-size: 24px;
+            }
+
+            .logo-mark {
+                width: 42px;
+                height: 42px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+
+            .nav-links a {
+                display: inline-flex;
+                justify-content: center;
+                padding: 12px 0;
+                border-radius: 12px;
+                background: rgba(31, 158, 170, 0.08);
+            }
+
+            .content {
+                padding: 20px 16px;
+                width: calc(100% - 32px);
+            }
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="brand-block">
+            <div class="brand-text">
+                <span class="brand-name">
+                    <span class="letter">i</span>
+                    <span class="letter">T</span>
+                    <span class="letter-orange">Q</span>
+                    <span class="letter">A</span>
+                    <span class="letter-orange">N</span>
+                </span>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <span class="brand-sub">Tech</span>
+                    <span class="brand-arabic">اتقــــــان</span>
+                </div>
+            </div>
+            <div class="logo-mark">IT</div>
+        </div>
+        <div class="nav-links">
+            <a href="/">الرئيسية</a>
+            <a href="/products/">المنتجات</a>
+            <a href="/contact/">تواصل</a>
+            <a href="/cart/"><i class="fas fa-shopping-cart"></i> السلة</a>
+        </div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 ITQAN Tech - جميع الحقوق محفوظة</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+</body>
+</html>

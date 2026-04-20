@@ -1,0 +1,15 @@
+{% extends 'stor/base.html' %}
+{% load static %}
+
+{% block title %}تم الطلب بنجاح{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="text-success">تم إنشاء الطلب بنجاح!</h1>
+        <p>تم استلام طلبك بنجاح.</p>
+        <p>سوف يتواصل معك فريقنا قريباً لتأكيد الطلب.</p>
+        <a href="{% url 'stor:index' %}" class="btn btn-primary mt-3">العودة للمتجر</a>
+    </div>
+</div>
+{% endblock %}

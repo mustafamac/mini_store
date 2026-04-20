@@ -1,0 +1,51 @@
+{% extends 'stor/base.html' %}
+{% load static %}
+
+{% block title %}السلة{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">سلة التسوق</h1>
+    
+    {% if carts %}
+        <div class="row">
+            <div class="col-md-8">
+                {% for cart in carts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {% if cart.product.product_image %}
+                                    <img src="{{ cart.product.product_image.url }}" class="img-fluid" alt="{{ cart.product.product_name }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <h5>{{ cart.product.product_name }}</h5>
+                                <p>{{ cart.product.product_description|truncatechars:100 }}</p>
+                                <p>السعر: {{ cart.product.discounted_price }} ريال</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>الكمية: {{ cart.quantity }}</p>
+                                <p>الإجمالي: {{ cart.get_total_price }} ريال</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>ملخص الطلب</h5>
+                        <p>الإجمالي: {{ total }} ريال</p>
+                        <a href="{% url 'stor:checkout' %}" class="btn btn-primary btn-block">متابعة الشراء</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-center">السلة فارغة.</p>
+        <a href="{% url 'stor:index' %}" class="btn btn-primary">العودة للمتجر</a>
+    {% endif %}
+</div>
+{% endblock %}

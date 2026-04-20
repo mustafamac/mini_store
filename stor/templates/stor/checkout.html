@@ -1,0 +1,45 @@
+{% extends 'stor/base.html' %}
+{% load static %}
+
+{% block title %}إتمام الشراء{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">إتمام الشراء</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h3>بيانات العميل</h3>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="text-danger">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success">إتمام الطلب</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>ملخص الطلب</h3>
+            {% for cart in carts %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h6>{{ cart.product.product_name }}</h6>
+                    <p>الكمية: {{ cart.quantity }} - السعر: {{ cart.get_total_price }} ريال</p>
+                </div>
+            </div>
+            {% endfor %}
+            <h4>الإجمالي: {{ total }} ريال</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
