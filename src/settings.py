@@ -133,34 +133,37 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Email configuration
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'aimustafamac@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@itqan.com')
-ORDER_NOTIFICATION_EMAILS = [email.strip() for email in os.environ.get('ORDER_NOTIFICATION_EMAILS', 'orders@yourdomain.com').split(',') if email.strip()]
-WHATSAPP_NOTIFICATION_NUMBERS = [num.strip() for num in os.environ.get('WHATSAPP_NOTIFICATION_NUMBERS', '+201234567890').split(',') if num.strip()]
-WHATSAPP_CLOUD_API_VERSION = os.environ.get('WHATSAPP_CLOUD_API_VERSION', 'v17.0')
-WHATSAPP_PHONE_NUMBER_ID = os.environ.get('WHATSAPP_PHONE_NUMBER_ID', '')
-WHATSAPP_ACCESS_TOKEN = os.environ.get('WHATSAPP_ACCESS_TOKEN', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+ORDER_NOTIFICATION_EMAILS = [email.strip() for email in os.environ.get('ORDER_NOTIFICATION_EMAILS', 'aimustafamac@gmail.com').split(',') if email.strip()]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Security Settings for Production
+# Security Settings for Production & Double Security Tests
 SECURE_SSL_REDIRECT = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
 COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_AGE = 1209600  # 2 weeks
 SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 SECURE_HSTS_PRELOAD = not DEBUG
+
+# Double Security Tests Configurations (Headers)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 
 _trusted_origins = os.environ.get('CSRF_TRUSTED_ORIGINS', 'https://*.example.com,http://localhost:8000,http://127.0.0.1:8000,https://*.onrender.com')
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in _trusted_origins.split(',') if origin.strip()]

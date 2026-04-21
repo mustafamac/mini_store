@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الطلب - ITQAN Tech</title>
+</head>
+<body style="font-family: Tahoma, 'Segoe UI', Arial, sans-serif; background-color: #f3f8f8; margin: 0; padding: 0; color: #0b2d32; direction: rtl;">
+    <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(11, 45, 50, 0.08);">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1F9EAA 0%, #0e5e66 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
+            <h1 style="margin: 0; font-size: 28px; font-weight: bold;">تم استلام الطلب!</h1>
+            <p style="margin: 10px 0 0; opacity: 0.9; font-size: 16px;">رقم الطلب #{{ order.order_id }}</p>
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 30px;">
+            <h2 style="font-size: 18px; font-weight: bold; color: #1F9EAA; margin-bottom: 16px; border-bottom: 2px solid #f3f8f8; padding-bottom: 8px;">بيانات العميل</h2>
+            <div style="margin-bottom: 30px; line-height: 1.6;">
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">الاسم:</strong> {{ customer.full_name }}</p>
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">البريد:</strong> {{ customer.email }}</p>
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">الهاتف:</strong> {{ customer.phone }}</p>
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">المدينة:</strong> {{ customer.city }}</p>
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">العنوان:</strong> {{ customer.address }}</p>
+
+                {% if customer.notes %}
+                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">ملاحظات:</strong> {{ customer.notes }}</p>
+                {% endif %}
+            </div>
+
+            <h2 style="font-size: 18px; font-weight: bold; color: #1F9EAA; margin-bottom: 16px; border-bottom: 2px solid #f3f8f8; padding-bottom: 8px;">ملخص الطلب</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; text-align: right;" dir="rtl">
+                <thead>
+                    <tr>
+                        <th style="background-color: #f3f8f8; color: #2e6a72; font-weight: bold; padding: 12px; font-size: 14px;">المنتج</th>
+                        <th style="background-color: #f3f8f8; color: #2e6a72; font-weight: bold; padding: 12px; font-size: 14px;">الكمية</th>
+                        <th style="background-color: #f3f8f8; color: #2e6a72; font-weight: bold; padding: 12px; font-size: 14px;">السعر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in products_data %}
+                    <tr>
+                        <td style="padding: 14px 12px; border-bottom: 1px solid #e8eeee; font-size: 14px;">{{ item.name }}</td>
+                        <td style="padding: 14px 12px; border-bottom: 1px solid #e8eeee; font-size: 14px;">{{ item.quantity }}</td>
+                        <td style="padding: 14px 12px; border-bottom: 1px solid #e8eeee; font-size: 14px;">{{ item.price }} ج.م</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2" style="font-weight: bold; font-size: 18px; color: #F18722; text-align: left; padding-top: 20px;">الإجمالي الكلي:</td>
+                        <td style="font-weight: bold; font-size: 18px; color: #F18722; padding-top: 20px; padding-right: 12px;">{{ total }} ج.م</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 24px; background-color: #0b2d32; color: rgba(255, 255, 255, 0.6); font-size: 12px;">
+            <p style="margin: 0 0 5px 0;">© 2025 ITQAN Tech — جميع الحقوق محفوظة</p>
+            <p style="margin: 0;">تم إرسال هذا البريد تلقائياً من نظام متجر إتقان</p>
+        </div>
+    </div>
+</body>
+</html>

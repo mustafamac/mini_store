@@ -5,12 +5,18 @@ from .models import (
     Cart, CustomerInfo, Order, Contact
 )
 
+# تخصيص واجهة لوحة التحكم
+admin.site.site_header = "إدارة متجر ITQAN Tech"
+admin.site.site_title = "بوابة الإدارة"
+admin.site.index_title = "لوحة تحكم منصة إتقان تيك"
+
 # Register Category
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category', 'is_active')
     list_filter = ('is_active',)
     search_fields = ('category',)
+    list_editable = ('is_active',)
 
 # Register Company
 @admin.register(Company)
@@ -18,25 +24,40 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ('company', 'category', 'is_active')
     list_filter = ('is_active', 'category')
     search_fields = ('company',)
+    list_editable = ('is_active',)
 
 # Register Product
+class FeatureProductImageInline(admin.TabularInline):
+    model = FeatureProductImage
+    extra = 1
+
+class ProductDescriptionInline(admin.StackedInline):
+    model = ProductDescription
+    extra = 1
+
+class AdditionalInformationInline(admin.TabularInline):
+    model = AdditionalInformation
+    extra = 1
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('product_name', 'category', 'company', 'orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_trending')
     list_filter = ('is_active', 'is_stock', 'is_trending', 'category', 'company')
     search_fields = ('product_name', 'product_description')
+    list_editable = ('orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_trending')
     readonly_fields = ('slug', 'created_at')
+    inlines = [FeatureProductImageInline, ProductDescriptionInline, AdditionalInformationInline]
     fieldsets = (
-        ('معلومات المنتج', {
+        ('معلومات المنتج الأساسية', {
             'fields': ('product_name', 'slug', 'product_description', 'category', 'company')
         }),
         ('التسعير والخصم', {
             'fields': ('orignal_price', 'discount_percentage')
         }),
-        ('الصورة', {
+        ('الصورة الأساسية', {
             'fields': ('product_image',)
         }),
-        ('الحالة', {
+        ('حالة المنتج', {
             'fields': ('is_stock', 'is_active', 'is_trending', 'warranty', 'created_at')
         }),
     )
@@ -84,7 +105,7 @@ class CustomerInfoAdmin(admin.ModelAdmin):
             'fields': ('full_name', 'email', 'phone')
         }),
         ('العنوان', {
-            'fields': ('address', 'city', 'zip_code')
+            'fields': ('address', 'city')
         }),
         ('ملاحظات', {
             'fields': ('notes',)
@@ -94,26 +115,34 @@ class CustomerInfoAdmin(admin.ModelAdmin):
 # Register Order
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('order_id', 'customer', 'customer_email', 'customer_phone', 'total_amount', 'status', 'created_at')
+    list_display = ('order_id', 'customer', 'customer_phone', 'total_amount', 'status', 'created_at')
     list_filter = ('status', 'created_at')
     search_fields = ('order_id', 'customer__full_name', 'customer__email', 'customer__phone')
     readonly_fields = ('order_id', 'created_at', 'products_data')
+    list_editable = ('status',)
+    date_hierarchy = 'created_at'
+    actions = ['mark_as_completed', 'mark_as_processing']
+
     fieldsets = (
         ('معلومات الطلب', {
             'fields': ('order_id', 'customer', 'status', 'created_at')
         }),
-        ('التفاصيل المالية', {
+        ('التفاصيل المالية والمنتجات', {
             'fields': ('total_amount', 'products_data')
         }),
     )
 
-    def customer_email(self, obj):
-        return obj.customer.email
-    customer_email.short_description = 'البريد الإلكتروني'
-
     def customer_phone(self, obj):
         return obj.customer.phone
     customer_phone.short_description = 'الهاتف'
+
+    def mark_as_completed(self, request, queryset):
+        queryset.update(status='completed')
+    mark_as_completed.short_description = "تحديد الطلبات كـ 'مكتمل'"
+
+    def mark_as_processing(self, request, queryset):
+        queryset.update(status='processing')
+    mark_as_processing.short_description = "تحديد الطلبات كـ 'قيد المعالجة'"
 
 # Register Contact
 @admin.register(Contact)

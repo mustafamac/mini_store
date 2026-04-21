@@ -1,44 +1,98 @@
 {% extends 'stor/base.html' %}
 {% load static %}
 
-{% block title %}إتمام الشراء{% endblock %}
+{% block title %}إتمام الطلب — ITQAN Tech{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">إتمام الشراء</h1>
-    
-    <div class="row">
-        <div class="col-md-6">
-            <h3>بيانات العميل</h3>
-            <form method="post">
-                {% csrf_token %}
-                {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <div class="text-danger">
-                            {% for error in field.errors %}
-                                {{ error }}
-                            {% endfor %}
+<div class="checkout-section">
+    <div class="container">
+        <h1 class="checkout-title">إتمام الطلب</h1>
+        
+        <div class="row" style="row-gap: 24px;">
+            <div class="col-lg-7">
+                <div class="checkout-card">
+                    <h3 class="mb-4" style="font-weight: 800;">بيانات الشحن والتواصل</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label class="form-label" for="{{ form.full_name.id_for_label }}">الاسم بالكامل</label>
+                                {{ form.full_name }}
+                                {% if form.full_name.errors %}
+                                <div class="text-danger">{{ form.full_name.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ form.email.id_for_label }}">البريد الإلكتروني</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger">{{ form.email.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ form.phone.id_for_label }}">رقم الهاتف</label>
+                                {{ form.phone }}
+                                {% if form.phone.errors %}
+                                <div class="text-danger">{{ form.phone.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ form.city.id_for_label }}">المدينة</label>
+                                {{ form.city }}
+                                {% if form.city.errors %}
+                                <div class="text-danger">{{ form.city.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label class="form-label" for="{{ form.address.id_for_label }}">العنوان بالتفصيل</label>
+                                {{ form.address }}
+                                {% if form.address.errors %}
+                                <div class="text-danger">{{ form.address.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="form-label" for="{{ form.notes.id_for_label }}">ملاحظات إضافية (اختياري)</label>
+                                {{ form.notes }}
+                                {% if form.notes.errors %}
+                                <div class="text-danger">{{ form.notes.errors.0 }}</div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                <button type="submit" class="btn btn-success">إتمام الطلب</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <h3>ملخص الطلب</h3>
-            {% for cart in carts %}
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h6>{{ cart.product.product_name }}</h6>
-                    <p>الكمية: {{ cart.quantity }} - السعر: {{ cart.get_total_price }} ريال</p>
+                        <button type="submit" class="btn btn-success w-100 btn-lg mt-3" style="border-radius: var(--r-xl); font-weight: 800; font-size: 18px; padding: 14px;">
+                            تأكيد الطلب
+                        </button>
+                    </form>
                 </div>
             </div>
-            {% endfor %}
-            <h4>الإجمالي: {{ total }} ريال</h4>
+            
+            <div class="col-lg-5">
+                <div class="checkout-summary sticky-top" style="top: 100px;">
+                    <h3 class="mb-4" style="font-weight: 800;">ملخص الطلبية</h3>
+                    {% for cart in carts %}
+                    <div class="summary-item">
+                        {% if cart.product.product_image %}
+                        <img src="{{ cart.product.product_image.url }}" alt="{{ cart.product.product_name }}" style="width: 64px; height: 64px; object-fit: cover; border-radius: 12px; flex-shrink: 0;">
+                        {% endif %}
+                        <div>
+                            <h6>{{ cart.product.product_name }}</h6>
+                            <p>العدد: {{ cart.quantity }} × {{ cart.product.discounted_price|default:cart.product.orignal_price }} ج.م</p>
+                        </div>
+                        <div class="ms-auto" style="font-weight: 800; white-space: nowrap; margin-right: 12px;">
+                            {{ cart.get_total_price }} ج.م
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="total-row">
+                        <span>الإجمالي الكلي:</span>
+                        <span>{{ total }} ج.م</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

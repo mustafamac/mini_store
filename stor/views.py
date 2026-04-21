@@ -21,8 +21,15 @@ def index(request):
         is_stock=True
     ).order_by('-created_at')  # الأحدث أولاً
 
+    featured_products = Product.objects.filter(
+        is_active=True,
+        is_stock=True,
+        is_trending=True
+    ).order_by('-created_at')
+
     context = {
         'products': products,
+        'featured_products': featured_products,
     }
     return render(request, 'stor/index.html', context)
 
@@ -40,7 +47,7 @@ def product_detail(request, slug):
 
 def contact(request):
     """
-    معالج نموذج الاتصال الموجود في الفوتر
+    صفحة التواصل - عرض النموذج ومعالجة الإرسال
     """
     if request.method == 'POST':
         name = request.POST.get('first_name', '') + ' ' + request.POST.get('last_name', '')
@@ -59,18 +66,21 @@ def contact(request):
         else:
             messages.error(request, 'يرجى ملء جميع الحقول المطلوبة.')
         
-        return redirect('stor:index')
+        return redirect('stor:contact')
     
-    return redirect('stor:index')
+    return render(request, 'stor/contact.html')
 
 
 def product_list(request):
     """
-    صفحة قائمة المنتجات (اختياري - يمكن استخدامها لاحقاً)
+    صفحة قائمة المنتجات مع قسم المنتجات المميزة
     """
     products = Product.objects.filter(is_active=True, is_stock=True)
+    featured_products = Product.objects.filter(is_active=True, is_stock=True).order_by('-created_at')[:8]  # أحدث 8 منتجات كمميزة
+    
     context = {
         'products': products,
+        'featured_products': featured_products,
     }
     return render(request, 'stor/product_list.html', context)
 
@@ -158,7 +168,6 @@ def checkout(request):
                 f'الهاتف: {customer.phone}',
                 f'المدينة: {customer.city}',
                 f'العنوان: {customer.address}',
-                f'الرمز البريدي: {customer.zip_code}',
                 f'ملاحظات: {customer.notes or "-"}',
                 '',
                 'المنتجات:'
@@ -173,6 +182,13 @@ def checkout(request):
 
             email_recipients = getattr(settings, 'ORDER_NOTIFICATION_EMAILS', [])
             if email_recipients:
+                from django.template.loader import render_to_string
+                html_message = render_to_string('stor/email/order_notification.html', {
+                    'order': order,
+                    'customer': customer,
+                    'products_data': products_data,
+                    'total': total,
+                })
                 try:
                     send_mail(
                         subject,
@@ -180,42 +196,10 @@ def checkout(request):
                         settings.DEFAULT_FROM_EMAIL,
                         email_recipients,
                         fail_silently=True,
+                        html_message=html_message
                     )
                 except Exception as e:
                     logger.error(f"Failed to send email notification for order {order.order_id}: {str(e)}")
-
-            whatsapp_numbers = getattr(settings, 'WHATSAPP_NOTIFICATION_NUMBERS', [])
-            whatsapp_version = getattr(settings, 'WHATSAPP_CLOUD_API_VERSION', 'v17.0')
-            whatsapp_phone_number_id = getattr(settings, 'WHATSAPP_PHONE_NUMBER_ID', '')
-            whatsapp_access_token = getattr(settings, 'WHATSAPP_ACCESS_TOKEN', '')
-            if whatsapp_numbers and whatsapp_phone_number_id and whatsapp_access_token:
-                url = f'https://graph.facebook.com/{whatsapp_version}/{whatsapp_phone_number_id}/messages'
-                payload = {
-                    'messaging_product': 'whatsapp',
-                    'type': 'text',
-                }
-                for number in whatsapp_numbers:
-                    normalized_number = number.strip().replace('+', '').replace(' ', '')
-                    if not normalized_number:
-                        continue
-                    payload['to'] = normalized_number
-                    payload['text'] = {
-                        'body': message
-                    }
-                    data = json.dumps(payload).encode('utf-8')
-                    request_obj = urllib.request.Request(
-                        url,
-                        data=data,
-                        headers={
-                            'Authorization': f'Bearer {whatsapp_access_token}',
-                            'Content-Type': 'application/json'
-                        }
-                    )
-                    try:
-                        urllib.request.urlopen(request_obj, timeout=10)
-                    except (urllib.error.HTTPError, urllib.error.URLError, ValueError) as e:
-                        logger.error(f"Failed to send WhatsApp notification to {number}: {str(e)}")
-                        continue
 
             carts.delete()  # حذف السلة بعد الطلب
             messages.success(request, 'تم استلام طلبك بنجاح.')
