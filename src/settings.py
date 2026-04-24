@@ -78,6 +78,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'src.wsgi.application'
 
 # ---------- Database (with SSL for production) ----------
+import os
+import dj_database_url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(
         default=DATABASE_URL,
