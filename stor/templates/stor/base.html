@@ -11,121 +11,236 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Syne:wght@700;800&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <!-- Libs -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-          crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          crossorigin="anonymous">
-          <!-- splash screen -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'stor/css/splash.css' %}">
-    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
+    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'stor/css/style.css' %}">
-        <!-- microsoft clarity analytics - https://clarity.microsoft.com/
-        -->
-        <!--
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "CLARITY_ID");
-</script>
--->
+
     {% block extra_head %}{% endblock %}
 
-    <!-- App styles -->
-    
+    <style>
+        /* ========== SPLASH SCREEN ========== */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            animation: appear 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s forwards;
+        }
+        
+        @keyframes appear {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo-orbit {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 52px;
+        }
+        
+        .sig-line {
+            display: flex;
+            align-items: baseline;
+            white-space: nowrap;
+            position: relative;
+            z-index: 2;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 88px;
+            line-height: 1;
+            letter-spacing: 4px;
+        }
+        
+        /* النص بالترتيب الصحيح: ITQAN ثم Tech */
+        .sig-itqan {
+            color: #1cb48c;  /* أخضر */
+        }
+        
+        .sig-tech {
+            color: #F39C12;  /* برتقالي */
+            margin-right: 12px; /* مسافة بين الكلمتين */
+        }
+        
+        .sig-rule {
+            display: flex;
+            align-items: center;
+            margin-top: 2px;
+            opacity: 0;
+            animation: ruleIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+        }
+        
+        @keyframes ruleIn {
+            from { opacity: 0; transform: scaleX(0.2); }
+            to { opacity: 1; transform: scaleX(1); }
+        }
+        
+        .rule-line {
+            height: 1.5px;
+            width: 210px;
+            background: linear-gradient(90deg, rgba(28,180,140,0.1) 0%, #1cb48c 50%, rgba(28,180,140,0.1) 100%);
+            border-radius: 99px;
+        }
+        
+        .rule-diamond {
+            font-size: 14px;
+            color: #1cb48c;
+            margin: 0 7px;
+            animation: dGlow 2.4s ease-in-out infinite 1.2s;
+        }
+        
+        @keyframes dGlow {
+            0%,100% { filter: drop-shadow(0 0 2px rgba(28,180,140,0.4)); }
+            50% { filter: drop-shadow(0 0 8px rgba(28,180,140,0.9)); }
+        }
+        
+        .loader-wrap {
+            margin-top: 30px;
+            width: 220px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 1s forwards;
+        }
+        
+        @keyframes fadeIn { to { opacity: 1; } }
+        
+        .loader-track {
+            width: 100%;
+            height: 2.5px;
+            background: #e0f4ee;
+            border-radius: 99px;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .loader-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #1cb48c 0%, #4de0b8 100%);
+            border-radius: 99px;
+            transition: width 0.09s linear;
+            position: relative;
+        }
+        
+        .loader-fill::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #1cb48c;
+            border-radius: 50%;
+            animation: tipPulse 1.1s ease-in-out infinite;
+        }
+        
+        @keyframes tipPulse {
+            0%,100% { box-shadow: 0 0 0 3px rgba(28,180,140,0.18), 0 0 10px 4px rgba(28,180,140,0.28); }
+            50% { box-shadow: 0 0 0 4px rgba(28,180,140,0.28), 0 0 16px 7px rgba(28,180,140,0.48); }
+        }
+        
+        .loader-shimmer {
+            position: absolute;
+            top: 0;
+            left: -55%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            border-radius: 99px;
+            animation: sweep 2s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sweep { 0% { left: -55%; } 100% { left: 110%; } }
+        
+        #fade-overlay {
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.55s ease;
+        }
+        
+        #fade-overlay.active { opacity: 1; pointer-events: all; }
+        
+        #starCanvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sig-line { font-size: 48px; }
+            .logo-orbit { padding: 20px 26px; }
+            .rule-line { width: 120px; }
+            .loader-wrap { width: 180px; }
+        }
+        
+        /* إخفاء المحتوى الرئيسي حتى انتهاء السبلاش */
+        body > *:not(#splash):not(#fade-overlay) {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
-   
-<div id="splash">
+    <!-- شاشة السبلاش -->
+    <div id="splash">
+        <div class="logo-orbit" id="logoOrbit">
+            <div class="sig-line" dir="ltr">
+                <span class="sig-itqan">ITQAN</span>
+                <span class="sig-tech">Tech</span>
+            </div>
+            <canvas id="starCanvas"></canvas>
+        </div>
 
-  <div class="orbit-stage">
+        <div class="sig-rule">
+            <div class="rule-line"></div>
+            <span class="rule-diamond">✦</span>
+            <div class="rule-line"></div>
+        </div>
 
-    <!-- Logo text -->
-    <div class="logo-text">
-      <span class="logo-it">IT</span><span class="logo-qan">QAN</span>
+        <div class="loader-wrap">
+            <div class="loader-track">
+                <div class="loader-fill" id="fill"></div>
+                <div class="loader-shimmer"></div>
+            </div>
+        </div>
     </div>
-
-    <!-- Orbit SVG — ellipse path with animated star -->
-    <svg class="orbit-svg" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg" fill="none">
-
-      <!-- Faint ellipse orbit track -->
-      <ellipse cx="130" cy="55" rx="122" ry="48"
-               stroke="rgba(28,180,140,0.12)" stroke-width="1" stroke-dasharray="4 6"/>
-
-      <!-- Trailing dots that follow the star (staggered offsets) -->
-      <!-- We animate these in JS for smooth trailing effect -->
-      <circle id="t1" r="2.2" fill="#1cb48c" opacity="0.55"/>
-      <circle id="t2" r="1.7" fill="#1cb48c" opacity="0.38"/>
-      <circle id="t3" r="1.2" fill="#1cb48c" opacity="0.22"/>
-
-      <!-- Disney 4-point sparkle star at orbit position, animated via JS -->
-      <g id="star-pos">
-        <!-- 4-point sparkle: two thin diamonds overlaid -->
-        <path id="sparkle-shape"
-          d="M0,-11 C0.5,-2.5 2.5,-0.5 11,0 C2.5,0.5 0.5,2.5 0,11 C-0.5,2.5 -2.5,0.5 -11,0 C-2.5,-0.5 -0.5,-2.5 0,-11 Z"
-          fill="#1cb48c"
-          style="filter: drop-shadow(0 0 4px rgba(28,180,140,0.8))"/>
-        <!-- Small center diamond for extra sparkle -->
-        <path
-          d="M0,-5 C0.3,-1 1,-0.3 5,0 C1,0.3 0.3,1 0,5 C-0.3,1 -1,0.3 -5,0 C-1,-0.3 -0.3,-1 0,-5 Z"
-          fill="white" opacity="0.7"/>
-      </g>
-
-    </svg>
-  </div>
-
-  <!-- Rule -->
-  <div class="sig-rule">
-    <div class="rule-line"></div>
-    <span class="rule-diamond">✦</span>
-    <div class="rule-line"></div>
-  </div>
-
-  <!-- Loader -->
-  <div class="loader-wrap">
-    <div class="loader-track">
-      <div class="loader-fill" id="fill"></div>
-      <div class="loader-shimmer"></div>
-    </div>
-  </div>
-
-</div>
-
     
+    <div id="fade-overlay"></div>
 
-
-<div id="fade-overlay"></div>
-
-
-    <!-- Scroll progress indicator -->
-    <div id="pg" role="progressbar" aria-hidden="true"></div>
-
-    <!-- ══════════════ HEADER ══════════════ -->
+    <!-- ========== HEADER (لم يتغير) ========== -->
     <header class="header" role="banner">
-
-        <!-- Brand -->
         <a href="/" class="brand-block" aria-label="ITQAN Tech">
             <img src="{% static 'stor/img/itqan-logo.png' %}" alt="ITQAN Tech" class="brand-logo-image">
         </a>
 
-        <!-- Mobile hamburger -->
         <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileNav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
 
-        <!-- Desktop navigation -->
         <nav class="nav-links" aria-label="القائمة الرئيسية">
             <a href="/" id="homeLink" class="nav-active"><span>الرئيسية</span></a>
             <a href="{% url 'stor:product_list' %}"><span>جميع المنتجات</span></a>
@@ -136,7 +251,6 @@
             </a>
         </nav>
 
-        <!-- Mobile nav overlay -->
         <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="القائمة">
             <button class="close-menu" aria-label="إغلاق القائمة">
                 <i class="fas fa-times" aria-hidden="true"></i>
@@ -151,18 +265,16 @@
                 </a>
             </nav>
         </div>
-
     </header>
 
-    <!-- ══════════════ MAIN ══════════════ -->
+    <!-- ========== MAIN CONTENT ========== -->
     <main class="content" id="main-content">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- ══════════════ FOOTER ══════════════ -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer" id="footer" role="contentinfo">
         <div class="footer-body">
-
             <div class="ft-brand">
                 <img src="{% static 'stor/img/itqan-logo.png' %}" alt="ITQAN Tech" class="ft-brand-logo-image">
                 <p class="ft-tagline">مصدرك الموثوق للاكسسوارات التقنية عالية الجودة.</p>
@@ -180,28 +292,179 @@
             <div>
                 <span class="ft-col-label">تواصل معنا</span>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/itqantech/"
-                       aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/itqantech/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
-                    <a href="https://wa.me/201050032925"
-                       aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/201050032925" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
-
         </div>
 
         <div class="footer-bar">
             <p>&#169; 2026 ITQAN Tech &mdash; جميع الحقوق محفوظة</p>
-            <p> 𝓘𝓣𝓠𝓐𝓝𝓣𝓔𝓒𝓗  ✦───────────────𝓐𝓵𝓪𝓼𝓮𝓮𝓵</p>
+            <p>𝓘𝓣𝓠𝓐𝓝𝓣𝓔𝓒𝓗 ✦───────────────𝓐𝓵𝓪𝓼𝓮𝓮𝓵</p>
         </div>
     </footer>
 
-    <!-- App JS -->
-    <script src="{% static 'stor/js/main.js' %}"></script>
-    <script src="{% static 'stor/js/splash.js' %}"></script>
+    <!-- ========== سكريبت السبلاش ========== -->
+    <script>
+    // التحقق: هل ظهرت السبلاش من قبل في هذه الجلسة؟
+    if (!sessionStorage.getItem('splashShown')) {
+        // تسجيل أن السبلاش قد ظهرت
+        sessionStorage.setItem('splashShown', 'true');
+        
+        // ---- تشغيل تأثير النجمة على canvas ----
+        (function() {
+            const box = document.getElementById('logoOrbit');
+            const canvas = document.getElementById('starCanvas');
+            if (!box || !canvas) return;
+            const ctx = canvas.getContext('2d');
 
+            let W, H, cx, cy, rx, ry;
+            function resize() {
+                const r = box.getBoundingClientRect();
+                W = canvas.width = r.width;
+                H = canvas.height = r.height;
+                cx = W / 2;
+                cy = H / 2;
+                rx = W / 2 - 10;
+                ry = H / 2 - 8;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const TRAIL = 28;
+            const history = [];
+            let angle = -Math.PI / 2;
+            const speed = (2 * Math.PI) / (3.0 * 60);
+
+            function drawStar(x, y, size, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.translate(x, y);
+                const grd = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 2.2);
+                grd.addColorStop(0, 'rgba(28,180,140,0.55)');
+                grd.addColorStop(0.4, 'rgba(28,180,140,0.18)');
+                grd.addColorStop(1, 'rgba(28,180,140,0)');
+                ctx.beginPath();
+                ctx.arc(0, 0, size * 2.2, 0, Math.PI * 2);
+                ctx.fillStyle = grd;
+                ctx.fill();
+                ctx.beginPath();
+                const o = size, i = size * 0.22;
+                ctx.moveTo(0, -o);
+                ctx.quadraticCurveTo(i, -i, o, 0);
+                ctx.quadraticCurveTo(i, i, 0, o);
+                ctx.quadraticCurveTo(-i, i, -o, 0);
+                ctx.quadraticCurveTo(-i, -i, 0, -o);
+                ctx.closePath();
+                ctx.fillStyle = '#1cb48c';
+                ctx.fill();
+                ctx.beginPath();
+                const oi = size * 0.45, ii = size * 0.1;
+                ctx.moveTo(0, -oi);
+                ctx.quadraticCurveTo(ii, -ii, oi, 0);
+                ctx.quadraticCurveTo(ii, ii, 0, oi);
+                ctx.quadraticCurveTo(-ii, ii, -oi, 0);
+                ctx.quadraticCurveTo(-ii, -ii, 0, -oi);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(255,255,255,0.55)';
+                ctx.fill();
+                ctx.restore();
+            }
+
+            function drawSparkle(x, y, size, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha * 0.7;
+                ctx.translate(x, y);
+                ctx.beginPath();
+                const s = size;
+                ctx.moveTo(0, -s);
+                ctx.lineTo(0, s);
+                ctx.moveTo(-s, 0);
+                ctx.lineTo(s, 0);
+                ctx.strokeStyle = '#1cb48c';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            function frame() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, W, H);
+                angle += speed;
+                const x = cx + rx * Math.cos(angle);
+                const y = cy + ry * Math.sin(angle);
+                history.unshift({ x, y });
+                if (history.length > TRAIL) history.pop();
+                history.forEach((p, i) => {
+                    const t = 1 - i / TRAIL;
+                    const size = 1.8 * t;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, Math.max(size, 0.3), 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(28,180,140,${0.55 * t})`;
+                    ctx.fill();
+                    if (i % 6 === 0 && i > 0) drawSparkle(p.x, p.y, 3.5 * t, t * 0.5);
+                });
+                drawStar(x, y, 9, 1);
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        })();
+
+        // ---- شريط التحميل وإخفاء السبلاش بعد 3 ثوان ----
+        (function() {
+            const fill = document.getElementById('fill');
+            const overlay = document.getElementById('fade-overlay');
+            const splash = document.getElementById('splash');
+            const dur = 3000;
+            const t0 = performance.now();
+            
+            function ease(t) {
+                return t < 0.65 ? t * 1.38 : 0.897 + 0.103 * ((t - 0.65) / 0.35);
+            }
+            
+            function tick(now) {
+                const raw = Math.min((now - t0) / dur, 1);
+                if (fill) fill.style.width = Math.min(ease(raw) * 100, 100) + '%';
+                if (raw < 1) {
+                    requestAnimationFrame(tick);
+                    return;
+                }
+                setTimeout(() => {
+                    if (overlay) overlay.classList.add('active');
+                    setTimeout(() => {
+                        if (splash) splash.style.display = 'none';
+                        // إظهار المحتوى الرئيسي
+                        document.querySelectorAll('body > *:not(#splash):not(#fade-overlay)').forEach(el => {
+                            el.style.visibility = 'visible';
+                        });
+                        if (overlay) {
+                            overlay.style.transition = 'opacity 0.45s ease';
+                            overlay.style.opacity = '0';
+                            setTimeout(() => { if (overlay) overlay.style.pointerEvents = 'none'; }, 450);
+                        }
+                    }, 550);
+                }, 150);
+            }
+            requestAnimationFrame(tick);
+        })();
+    } else {
+        // سبق ظهور السبلاش => نخفيها فوراً ونظهر المحتوى بدون تأخير
+        const splash = document.getElementById('splash');
+        const overlay = document.getElementById('fade-overlay');
+        if (splash) splash.style.display = 'none';
+        if (overlay) overlay.style.display = 'none';
+        document.querySelectorAll('body > *:not(#splash):not(#fade-overlay)').forEach(el => {
+            el.style.visibility = 'visible';
+        });
+    }
+    </script>
+
+    <!-- ملف الجافاسكريبت الرئيسي للموقع -->
+    <script src="{% static 'stor/js/main.js' %}"></script>
 </body>
+
 </html>
