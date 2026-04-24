@@ -78,18 +78,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'src.wsgi.application'
 
 # ---------- Database (with SSL for production) ----------
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if not DATABASE_URL and IS_PROD:
-    raise ValueError("DATABASE_URL is required in production!")
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR}/db.sqlite3' if IS_DEV else None,
+        default=DATABASE_URL,
         conn_max_age=600,
         conn_health_checks=True,
-        ssl_require=IS_PROD,   # Enforce SSL on database connection in production
+        ssl_require=IS_PROD,
     )
+
 }
+if IS_PROD and not DATABASE_URL:
+    raise ValueError("DATABASE_URL is required in production!")
 
 # ---------- Password Validation ----------
 AUTH_PASSWORD_VALIDATORS = [
