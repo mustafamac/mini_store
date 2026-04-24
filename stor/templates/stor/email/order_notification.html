@@ -19,9 +19,7 @@
             <h2 style="font-size: 18px; font-weight: bold; color: #1F9EAA; margin-bottom: 16px; border-bottom: 2px solid #f3f8f8; padding-bottom: 8px;">بيانات العميل</h2>
             <div style="margin-bottom: 30px; line-height: 1.6;">
                 <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">الاسم:</strong> {{ customer.full_name }}</p>
-                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">البريد:</strong> {{ customer.email }}</p>
                 <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">الهاتف:</strong> {{ customer.phone }}</p>
-                <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">المدينة:</strong> {{ customer.city }}</p>
                 <p style="margin: 8px 0; font-size: 14px;"><strong style="color: #0b2d32; display: inline-block; width: 120px;">العنوان:</strong> {{ customer.address }}</p>
 
                 {% if customer.notes %}

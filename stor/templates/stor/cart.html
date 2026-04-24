@@ -1,51 +1,125 @@
 {% extends 'stor/base.html' %}
 {% load static %}
 
-{% block title %}السلة{% endblock %}
+{% block title %}السلة — ITQAN Tech{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">سلة التسوق</h1>
-    
-    {% if carts %}
-        <div class="row">
-            <div class="col-md-8">
-                {% for cart in carts %}
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {% if cart.product.product_image %}
-                                    <img src="{{ cart.product.product_image.url }}" class="img-fluid" alt="{{ cart.product.product_name }}">
-                                {% endif %}
+<section class="checkout-section">
+    <div class="container">
+        <h1 class="checkout-title">سلة التسوق</h1>
+
+        <div class="row g-4">
+
+            <!-- Cart Items -->
+            <div class="col-lg-7">
+                <div class="checkout-card">
+                    <h5 style="font-weight:800;color:var(--ink);margin-bottom:20px;">المنتجات</h5>
+                    <div id="cartItemsContainer">
+                        {% if cart_items %}
+                            {% for item in cart_items %}
+                            <div class="summary-item"
+                                data-product-id="{{ item.product.id }}"
+                                data-unit-price="{{ item.product.discounted_price|default:item.product.orignal_price }}"
+                                data-product-name="{{ item.product.product_name|escapejs }}"
+                                data-qty="{{ item.quantity }}">
+                                <div class="cart-item-img">
+                                    {% if item.product.product_image %}
+                                    <img src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
+                                    {% endif %}
+                                </div>
+                                <div style="flex:1;">
+                                    <h6>{{ item.product.product_name }}</h6>
+                                    <p>{{ item.product.discounted_price|default:item.product.orignal_price }} ج.م / القطعة</p>
+                                </div>
+                                <div class="qty-controls">
+                                    <button class="qty-btn qty-minus" type="button">-</button>
+                                    <span class="qty-value">{{ item.quantity }}</span>
+                                    <button class="qty-btn qty-plus" type="button">+</button>
+                                </div>
+                                <div class="item-total">
+                                    <!-- calculated by JS -->
+                                </div>
+                                <button class="remove-item-btn" data-id="{{ item.product.id }}" type="button" title="حذف">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
                             </div>
-                            <div class="col-md-6">
-                                <h5>{{ cart.product.product_name }}</h5>
-                                <p>{{ cart.product.product_description|truncatechars:100 }}</p>
-                                <p>السعر: {{ cart.product.discounted_price }} ريال</p>
+                            {% endfor %}
+
+                            <!-- Checkout CTA button -->
+                            <div style="text-align:center;margin-top:24px;">
+                                <button type="button" id="goToCheckoutBtn" class="btn btn-success" style="padding:12px 40px;font-size:15px;">
+                                    <i class="fas fa-check-circle me-2"></i>تأكيد الشراء
+                                </button>
                             </div>
-                            <div class="col-md-3">
-                                <p>الكمية: {{ cart.quantity }}</p>
-                                <p>الإجمالي: {{ cart.get_total_price }} ريال</p>
+                        {% else %}
+                            <div class="empty-state" style="padding:40px 0;">
+                                <i class="fas fa-shopping-cart" style="font-size:48px;color:var(--tq-20);display:block;margin-bottom:16px;"></i>
+                                <p>السلة فارغة.</p>
+                                <a href="{% url 'stor:product_list' %}" class="btn btn-primary mt-3">تصفح المنتجات</a>
                             </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>ملخص الطلب</h5>
-                        <p>الإجمالي: {{ total }} ريال</p>
-                        <a href="{% url 'stor:checkout' %}" class="btn btn-primary btn-block">متابعة الشراء</a>
+
+            <!-- Order Summary + Confirm Form -->
+            <div class="col-lg-5">
+                <div class="checkout-summary" id="orderSummarySection">
+
+                    <!-- Totals -->
+                    <h5 style="font-weight:800;color:var(--ink);margin-bottom:20px;">ملخص الطلب</h5>
+                    <div id="summaryList" style="margin-bottom:16px;">
+                        <!-- populated by JS -->
                     </div>
+                    <div class="total-row" id="grandTotalRow">
+                        <span>الإجمالي</span>
+                        <span id="grandTotal">0 ج.م</span>
+                    </div>
+
+                    <hr style="border-color:var(--border);margin:24px 0;">
+
+                    <!-- Confirm Order Form -->
+                    <div id="confirmOrderForm">
+                        <h5 style="font-weight:800;color:var(--ink);margin-bottom:20px;">تأكيد الطلب</h5>
+                        <form id="checkoutForm" novalidate>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="fullName" name="full_name" placeholder="ادخل اسمك الكامل" required>
+                                <div class="text-danger d-none" id="nameError">من فضلك ادخل اسمك الكامل.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phoneNumber">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="phoneNumber" name="phone" placeholder="01xxxxxxxxx" required>
+                                <div class="text-danger d-none" id="phoneError">من فضلك ادخل رقم هاتف صحيح.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="deliveryAddress">عنوان التوصيل</label>
+                                <textarea class="form-control" id="deliveryAddress" name="address" rows="3" placeholder="المحافظة، المدينة، الشارع..." required></textarea>
+                                <div class="text-danger d-none" id="addressError">من فضلك ادخل عنوان التوصيل.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="additionalNotes">ملاحظات إضافية <span style="color:var(--ink-40);">(اختياري)</span></label>
+                                <textarea class="form-control" id="additionalNotes" name="notes" rows="2" placeholder=" علامة مميزة للعنوان , وقت تواصل معين او اى ملاحظات توصيل أخرى..."></textarea>
+                                <small style="color:var(--ink-40);font-size:12px;margin-top:4px;display:block;">مثال: قرب محطة المترو - الاتصال من 9 صباحاً إلى 5 مساءً</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-2" id="placeOrderBtn" style="font-size:16px;padding:14px;">
+                                <span class="btn-label"><i class="fas fa-check-circle me-2"></i>تأكيد الطلب</span>
+                                <span class="btn-loading d-none"><i class="fas fa-spinner fa-spin me-2"></i>جاري الإرسال...</span>
+                            </button>
+                        </form>
+                        <div id="orderSuccess" class="d-none" style="text-align:center;padding:32px 0;">
+                            <i class="fas fa-check-circle" style="font-size:56px;color:var(--tq);display:block;margin-bottom:16px;"></i>
+                            <h5 style="font-weight:800;color:var(--ink);margin-bottom:8px;">تم إرسال طلبك بنجاح!</h5>
+                            <p style="color:var(--ink-70);">سيتواصل معك فريقنا قريباً لتأكيد التوصيل.</p>
+                            <a href="{% url 'stor:product_list' %}" class="btn btn-success mt-3">متابعة التسوق</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    {% else %}
-        <p class="text-center">السلة فارغة.</p>
-        <a href="{% url 'stor:index' %}" class="btn btn-primary">العودة للمتجر</a>
-    {% endif %}
-</div>
+    </div>
+</section>
+
 {% endblock %}

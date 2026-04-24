@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Category, Company, Product, FeatureProductImage,
-    ProductDescription, AdditionalInformation, Review,
+    ProductDescription, Review,
     Cart, CustomerInfo, Order, Contact
 )
 
@@ -13,18 +13,15 @@ admin.site.index_title = "لوحة تحكم منصة إتقان تيك"
 # Register Category
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category', 'is_active')
-    list_filter = ('is_active',)
+    list_display = ('category',)
     search_fields = ('category',)
-    list_editable = ('is_active',)
 
 # Register Company
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('company', 'category', 'is_active')
-    list_filter = ('is_active', 'category')
+    list_display = ('company', 'category')
+    list_filter = ('category',)
     search_fields = ('company',)
-    list_editable = ('is_active',)
 
 # Register Product
 class FeatureProductImageInline(admin.TabularInline):
@@ -35,18 +32,18 @@ class ProductDescriptionInline(admin.StackedInline):
     model = ProductDescription
     extra = 1
 
-class AdditionalInformationInline(admin.TabularInline):
-    model = AdditionalInformation
+class ReviewInline(admin.TabularInline):
+    model = Review
     extra = 1
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'category', 'company', 'orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_trending')
-    list_filter = ('is_active', 'is_stock', 'is_trending', 'category', 'company')
+    list_display = ('product_name', 'category', 'company', 'orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_hot_sale', 'has_gift_wrap')
+    list_filter = ('is_active', 'is_stock', 'is_hot_sale', 'has_gift_wrap', 'category', 'company')
     search_fields = ('product_name', 'product_description')
-    list_editable = ('orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_trending')
+    list_editable = ('orignal_price', 'discount_percentage', 'is_stock', 'is_active', 'is_hot_sale', 'has_gift_wrap')
     readonly_fields = ('slug', 'created_at')
-    inlines = [FeatureProductImageInline, ProductDescriptionInline, AdditionalInformationInline]
+    inlines = [FeatureProductImageInline, ProductDescriptionInline, ReviewInline]
     fieldsets = (
         ('معلومات المنتج الأساسية', {
             'fields': ('product_name', 'slug', 'product_description', 'category', 'company')
@@ -57,8 +54,8 @@ class ProductAdmin(admin.ModelAdmin):
         ('الصورة الأساسية', {
             'fields': ('product_image',)
         }),
-        ('حالة المنتج', {
-            'fields': ('is_stock', 'is_active', 'is_trending', 'warranty', 'created_at')
+        ('حالة المنتج والعروض', {
+            'fields': ('is_stock', 'is_active', 'is_hot_sale', 'sale_end_time', 'has_gift_wrap', 'created_at')
         }),
     )
 
@@ -74,18 +71,12 @@ class ProductDescriptionAdmin(admin.ModelAdmin):
     list_display = ('product', 'feature')
     search_fields = ('product__product_name', 'feature')
 
-# Register AdditionalInformation
-@admin.register(AdditionalInformation)
-class AdditionalInformationAdmin(admin.ModelAdmin):
-    list_display = ('product', 'feature')
-    search_fields = ('product__product_name', 'feature')
-
 # Register Review
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('name', 'product', 'rating', 'title')
-    list_filter = ('rating',)
-    search_fields = ('name', 'product__product_name')
+    list_display = ('name', 'product', 'rating', 'created_at')
+    list_filter = ('rating', 'created_at')
+    search_fields = ('name', 'review', 'product__product_name')
 
 # Register Cart
 @admin.register(Cart)
@@ -98,11 +89,11 @@ class CartAdmin(admin.ModelAdmin):
 # Register CustomerInfo
 @admin.register(CustomerInfo)
 class CustomerInfoAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'email', 'phone', 'city')
-    search_fields = ('full_name', 'email', 'phone')
+    list_display = ('full_name', 'phone', 'city')
+    search_fields = ('full_name', 'phone')
     fieldsets = (
         ('معلومات العميل', {
-            'fields': ('full_name', 'email', 'phone')
+            'fields': ('full_name', 'phone')
         }),
         ('العنوان', {
             'fields': ('address', 'city')
@@ -117,7 +108,7 @@ class CustomerInfoAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_id', 'customer', 'customer_phone', 'total_amount', 'status', 'created_at')
     list_filter = ('status', 'created_at')
-    search_fields = ('order_id', 'customer__full_name', 'customer__email', 'customer__phone')
+    search_fields = ('order_id', 'customer__full_name', 'customer__phone')
     readonly_fields = ('order_id', 'created_at', 'products_data')
     list_editable = ('status',)
     date_hierarchy = 'created_at'

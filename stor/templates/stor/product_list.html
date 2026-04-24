@@ -15,7 +15,7 @@
 
         <div class="products-grid">
             {% for product in products %}
-            <a href="{% url 'stor:product_detail' product.slug %}" class="product-card">
+            <a href="{% url 'stor:product_detail' product.slug %}" class="product-card" id="product-{{ product.slug }}" data-product-slug="{{ product.slug }}">
                 {% if product.is_new %}
                     <div class="badge new">جديد</div>
                 {% elif product.discount_percentage %}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتقان تك</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 45% at 50% 50%, rgba(28,180,140,0.07) 0%, transparent 75%);
+  pointer-events: none;
+}
+
+/* ── Main wrapper ── */
+#splash {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: appear 1s cubic-bezier(0.16,1,0.3,1) 0.15s forwards;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Orbit stage ── */
+.orbit-stage {
+  position: relative;
+  width: 260px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Logo text ── */
+.logo-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  user-select: none;
+}
+
+.logo-it {
+  font-family: 'Cinzel', serif;
+  font-size: 58px;
+  font-weight: 700;
+  color: #3d4d5c;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.logo-qan {
+  font-family: 'Cinzel', serif;
+  font-size: 58px;
+  font-weight: 700;
+  color: #1cb48c;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.logo-tech {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3d4d5c;
+  letter-spacing: 5px;
+  line-height: 1;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+/* ── Orbit path (ellipse around the logo) ── */
+.orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* The orbiting star group */
+#star-group {
+  animation: orbitStar 3.2s linear infinite;
+  transform-origin: 160px 60px; /* center of the SVG */
+}
+@keyframes orbitStar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Star itself — Disney 4-point sparkle shape */
+.sparkle {
+  animation: sparklePulse 3.2s linear infinite;
+}
+@keyframes sparklePulse {
+  0%,100% { opacity: 0.4; transform: scale(0.7) rotate(0deg); }
+  25%      { opacity: 1;   transform: scale(1.15) rotate(45deg); }
+  50%      { opacity: 0.5; transform: scale(0.85) rotate(90deg); }
+  75%      { opacity: 1;   transform: scale(1.1) rotate(135deg); }
+}
+
+/* Trailing sparkle dots */
+.trail-dot {
+  fill: #1cb48c;
+  transform-origin: 160px 60px;
+}
+
+/* ── Decorative rule ── */
+.sig-rule {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+  opacity: 0;
+  animation: ruleIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
+}
+@keyframes ruleIn {
+  from { opacity: 0; transform: scaleX(0.2); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+.rule-line {
+  height: 1.5px;
+  width: 200px;
+  background: linear-gradient(90deg, rgba(28,180,140,0.1) 0%, #1cb48c 50%, rgba(28,180,140,0.1) 100%);
+  border-radius: 99px;
+}
+.rule-diamond {
+  font-size: 14px;
+  color: #1cb48c;
+  margin: 0 8px;
+  animation: diamondGlow 2.4s ease-in-out infinite 1.2s;
+}
+@keyframes diamondGlow {
+  0%,100% { filter: drop-shadow(0 0 2px rgba(28,180,140,0.4)); }
+  50%      { filter: drop-shadow(0 0 8px rgba(28,180,140,0.9)); }
+}
+
+/* ── Loading bar ── */
+.loader-wrap {
+  margin-top: 30px;
+  width: 210px;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 1s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+.loader-track {
+  width: 100%;
+  height: 2.5px;
+  background: #e4f4ef;
+  border-radius: 99px;
+  position: relative;
+  overflow: visible;
+}
+.loader-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1cb48c, #47ddb2);
+  border-radius: 99px;
+  transition: width 0.09s linear;
+  position: relative;
+}
+.loader-fill::after {
+  content: '';
+  position: absolute;
+  right: -4px; top: 50%;
+  transform: translateY(-50%);
+  width: 9px; height: 9px;
+  background: #1cb48c;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(28,180,140,0.2), 0 0 12px 5px rgba(28,180,140,0.35);
+  animation: tipPulse 1.2s ease-in-out infinite;
+}
+@keyframes tipPulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(28,180,140,0.18), 0 0 10px 4px rgba(28,180,140,0.28); }
+  50%      { box-shadow: 0 0 0 4px rgba(28,180,140,0.28), 0 0 18px 8px rgba(28,180,140,0.48); }
+}
+.loader-shimmer {
+  position: absolute;
+  top: 0; left: -55%; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+  border-radius: 99px;
+  animation: sweep 2s linear infinite;
+  pointer-events: none;
+}
+@keyframes sweep { 0% { left: -55%; } 100% { left: 110%; } }
+
+/* ── Exit ── */
+#fade-overlay {
+  position: fixed; inset: 0;
+  background: #fff; z-index: 99;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+#fade-overlay.active { opacity: 1; pointer-events: all; }
+#main-content {
+  display: none; position: fixed; inset: 0;
+  background: #fff; z-index: 50;
+  align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 1.3rem; color: #3d4d5c;
+}
+</style>
+</head>
+<body>
+
+<div id="splash">
+
+  <div class="orbit-stage">
+
+    <!-- Logo text -->
+    <div class="logo-text">
+      <span class="logo-it">IT</span><span class="logo-qan">QAN</span>
+    </div>
+
+    <!-- Orbit SVG — ellipse path with animated star -->
+    <svg class="orbit-svg" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+      <!-- Faint ellipse orbit track -->
+      <ellipse cx="130" cy="55" rx="122" ry="48"
+               stroke="rgba(28,180,140,0.12)" stroke-width="1" stroke-dasharray="4 6"/>
+
+      <!-- Trailing dots that follow the star (staggered offsets) -->
+      <!-- We animate these in JS for smooth trailing effect -->
+      <circle id="t1" r="2.2" fill="#1cb48c" opacity="0.55"/>
+      <circle id="t2" r="1.7" fill="#1cb48c" opacity="0.38"/>
+      <circle id="t3" r="1.2" fill="#1cb48c" opacity="0.22"/>
+
+      <!-- Disney 4-point sparkle star at orbit position, animated via JS -->
+      <g id="star-pos">
+        <!-- 4-point sparkle: two thin diamonds overlaid -->
+        <path id="sparkle-shape"
+          d="M0,-11 C0.5,-2.5 2.5,-0.5 11,0 C2.5,0.5 0.5,2.5 0,11 C-0.5,2.5 -2.5,0.5 -11,0 C-2.5,-0.5 -0.5,-2.5 0,-11 Z"
+          fill="#1cb48c"
+          style="filter: drop-shadow(0 0 4px rgba(28,180,140,0.8))"/>
+        <!-- Small center diamond for extra sparkle -->
+        <path
+          d="M0,-5 C0.3,-1 1,-0.3 5,0 C1,0.3 0.3,1 0,5 C-0.3,1 -1,0.3 -5,0 C-1,-0.3 -0.3,-1 0,-5 Z"
+          fill="white" opacity="0.7"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <!-- Rule -->
+  <div class="sig-rule">
+    <div class="rule-line"></div>
+    <span class="rule-diamond">✦</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader-wrap">
+    <div class="loader-track">
+      <div class="loader-fill" id="fill"></div>
+      <div class="loader-shimmer"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="fade-overlay"></div>
+<div id="main-content">ITQAN TECH ✦</div>
+
+<script>
+/* ── Orbit animation ── */
+(function () {
+  const cx = 130, cy = 55, rx = 122, ry = 48;
+  const star   = document.getElementById('star-pos');
+  const t1     = document.getElementById('t1');
+  const t2     = document.getElementById('t2');
+  const t3     = document.getElementById('t3');
+  const shape  = document.getElementById('sparkle-shape');
+
+  const PERIOD = 3200; // ms per revolution
+  const TRAIL_LAG = [0.06, 0.12, 0.19]; // fraction of circle behind
+
+  function pos(angle) {
+    return {
+      x: cx + rx * Math.cos(angle),
+      y: cy + ry * Math.sin(angle)
+    };
+  }
+
+  function tick(now) {
+    const t = (now % PERIOD) / PERIOD;
+    const angle = t * Math.PI * 2 - Math.PI / 2; // start from top
+
+    const p = pos(angle);
+    star.setAttribute('transform', `translate(${p.x},${p.y})`);
+
+    // Rotate the sparkle shape for twinkling
+    const rot = now * 0.12 % 360;
+    shape.setAttribute('transform', `rotate(${rot})`);
+
+    // Scale pulse (Disney sparkle grows/shrinks)
+    const pulse = 0.8 + 0.4 * Math.abs(Math.sin(now * 0.003));
+    shape.style.transform = `rotate(${rot}deg) scale(${pulse})`;
+    shape.style.transformOrigin = '0 0';
+
+    // Trail dots
+    [t1, t2, t3].forEach((dot, i) => {
+      const ta = angle - TRAIL_LAG[i] * Math.PI * 2;
+      const tp = pos(ta);
+      dot.setAttribute('cx', tp.x);
+      dot.setAttribute('cy', tp.y);
+    });
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* ── Loading bar ── */
+(function () {
+  const fill    = document.getElementById('fill');
+  const overlay = document.getElementById('fade-overlay');
+  const main    = document.getElementById('main-content');
+  const dur = 2800, t0 = performance.now();
+
+  function ease(t) {
+    return t < 0.65 ? t * 1.38 : 0.897 + 0.103 * ((t - 0.65) / 0.35);
+  }
+
+  function tick(now) {
+    const raw = Math.min((now - t0) / dur, 1);
+    fill.style.width = Math.min(ease(raw) * 100, 100) + '%';
+    if (raw < 1) { requestAnimationFrame(tick); return; }
+    setTimeout(() => {
+      overlay.classList.add('active');
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        main.style.display = 'flex';
+        overlay.style.transition = 'opacity 0.45s ease';
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.pointerEvents = 'none'; }, 450);
+      }, 550);
+    }, 150);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

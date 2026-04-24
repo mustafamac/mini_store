@@ -1,25 +1,39 @@
 {% extends 'stor/base.html' %}
 {% load static %}
 
-{% block title %}تفاصيل المنتج{% endblock %}
+{% block title %}{{ product.product_name }} — ITQAN Tech{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            {% if product.product_image %}
-                <img src="{{ product.product_image.url }}" class="img-fluid" alt="{{ product.product_name }}">
-            {% endif %}
-        </div>
-        <div class="col-md-6">
-            <h1>{{ product.product_name }}</h1>
-            <p>{{ product.product_description }}</p>
-            <p>السعر: {{ product.discounted_price }} ريال</p>
-            {% if product.orignal_price != product.discounted_price %}
-                <p><del>{{ product.orignal_price }} ريال</del></p>
-            {% endif %}
-            <a href="{% url 'stor:add_to_cart' product.id %}" class="btn btn-primary">إضافة إلى السلة</a>
+<section class="product-detail-section">
+    <div class="container">
+        <div class="product-detail-grid">
+            <div class="product-detail-image">
+                {% if product.product_image %}
+                <div class="card-img-wrap detail-img-wrap">
+                    <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
+                </div>
+                {% endif %}
+            </div>
+            <div class="product-detail-info">
+                <h1 class="product-detail-name">{{ product.product_name }}</h1>
+                <p class="product-detail-desc">{{ product.product_description }}</p>
+                <div class="product-detail-pricing">
+                    {% if product.orignal_price != product.discounted_price %}
+                    <span class="old-price detail-old-price">{{ product.orignal_price }} ج.م</span>
+                    {% endif %}
+                    <span class="current-price detail-current-price">{{ product.discounted_price }} ج.م</span>
+                </div>
+                {% if product.discount_percentage %}
+                <div class="detail-discount-badge">
+                    <i class="fas fa-tag"></i>
+                    خصم {{ product.discount_percentage }}%
+                </div>
+                {% endif %}
+                <a href="{% url 'stor:add_to_cart' product.id %}" class="btn btn-primary detail-add-btn">
+                    <i class="fas fa-cart-plus me-2"></i>إضافة إلى السلة
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

@@ -7,7 +7,6 @@ import uuid
 # ------------------------------------------------------------
 class Category(models.Model):
     category = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.category
@@ -15,7 +14,6 @@ class Category(models.Model):
 class Company(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='companies', null=True, blank=True)
     company = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
     
     class Meta:
         ordering = ['-company']
@@ -30,11 +28,12 @@ class Product(models.Model):
     product_description = models.TextField()
     orignal_price = models.PositiveIntegerField(default=0)
     discount_percentage = models.PositiveIntegerField(default=0)
-    warranty = models.IntegerField(default=1)
     product_image = models.ImageField(upload_to='product_images/')
     is_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
-    is_trending = models.BooleanField(default=False)
+    is_hot_sale = models.BooleanField(default=False)
+    sale_end_time = models.DateTimeField(null=True, blank=True, help_text="تاريخ انتهاء عرض الـ Hot Sale")
+    has_gift_wrap = models.BooleanField(default=False, help_text="إضافة زخرفة 'هدية' للمنتج")
     slug = models.SlugField(blank=True, null=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -78,7 +77,6 @@ class Cart(models.Model):
 # ------------------------------------------------------------
 class CustomerInfo(models.Model):
     full_name = models.CharField(max_length=200)
-    email = models.EmailField()
     phone = models.CharField(max_length=20)
     address = models.TextField()
     city = models.CharField(max_length=100, blank=True)
@@ -133,28 +131,15 @@ class ProductDescription(models.Model):
     def __str__(self):
         return self.product.product_name
 
-class AdditionalInformation(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='additional_informations')
-    new_product_name = models.CharField(max_length=100, blank=True, null=True)
-    feature = models.CharField(max_length=100)
-    exisiting_product_description1 = models.TextField(null=True, blank=True)
-    new_product_description = models.TextField(null=True, blank=True)
-
-    class Meta:
-        ordering = ['feature']
-        
-    def __str__(self):
-        return f"{self.product.product_name} - {self.feature}"
-
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_review')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     name = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
+    rating = models.PositiveIntegerField(default=5, choices=[(i, i) for i in range(1, 6)])
     review = models.TextField()
-    rating = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} - {self.product.product_name}"
+        return f"{self.name} - {self.product.product_name} ({self.rating}/5)"
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)

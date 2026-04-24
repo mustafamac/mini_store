@@ -5,119 +5,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1F9EAA">
     <title>{% block title %}ITQAN Tech{% endblock %}</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Syne:wght@700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    {% block extra_head %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Syne:wght@700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Libs -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          crossorigin="anonymous">
+          <!-- splash screen -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'stor/css/splash.css' %}">
+    {% load static %}
+    
     <link rel="stylesheet" href="{% static 'stor/css/style.css' %}">
+        <!-- microsoft clarity analytics - https://clarity.microsoft.com/
+        -->
+        <!--
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_ID");
+</script>
+-->
+    {% block extra_head %}{% endblock %}
+
+    <!-- App styles -->
+    
 </head>
 
 <body>
+   
+<div id="splash">
 
-    <div id="pg"></div>
+  <div class="orbit-stage">
 
-    <header class="header">
+    <!-- Logo text -->
+    <div class="logo-text">
+      <span class="logo-it">IT</span><span class="logo-qan">QAN</span>
+    </div>
 
-        <div class="brand-block">
-            <!-- brand-text FIRST in DOM → appears on RIGHT in RTL -->
-            <div class="brand-text">
-                <div class="brand-name" dir="ltr">
-                    <span class="lo">Q</span>
-                    <span class="lt">A</span>
-                    <span class="lo">N</span>
-                </div>
-                <div class="brand-meta">
-                    <span class="bm-ar">إتقـــان</span>
-                    <span class="meta-dot"></span>
-                    <span class="bm-sub">Tech</span>
-                </div>
-            </div>
+    <!-- Orbit SVG — ellipse path with animated star -->
+    <svg class="orbit-svg" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg" fill="none">
 
-            <!-- logo-mark SECOND in DOM → appears on LEFT in RTL -->
-            <div class="logo-mark" aria-hidden="true">
-                <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.5" y="0.5" width="45" height="45" rx="13.5" fill="url(#lgrad)" />
-                    <rect x="0.5" y="0.5" width="45" height="45" rx="13.5" stroke="rgba(255,255,255,0.15)" />
-                    <!-- Geometric Arabic-inspired inner shape -->
-                    <path d="M23 10L32 15.5V27.5L23 36L14 27.5V15.5Z" fill="none" stroke="rgba(255,255,255,0.18)"
-                        stroke-width="1" />
-                    <!-- Lettermark -->
-                    <text x="23" y="30.5" text-anchor="middle" font-family="Syne, sans-serif" font-weight="800"
-                        font-size="18.6" letter-spacing="-0.5" fill="#ffffff">iT</text>
-                    <!-- Orange accent node -->
-                    <circle cx="34.5" cy="12.5" r="4" fill="#F18722" />
-                    <defs>
-                        <linearGradient id="lgrad" x1="0" y1="0" x2="46" y2="46" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#1F9EAA" />
-                            <stop offset="100%" stop-color="#0e5e66" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-        </div>
+      <!-- Faint ellipse orbit track -->
+      <ellipse cx="130" cy="55" rx="122" ry="48"
+               stroke="rgba(28,180,140,0.12)" stroke-width="1" stroke-dasharray="4 6"/>
 
+      <!-- Trailing dots that follow the star (staggered offsets) -->
+      <!-- We animate these in JS for smooth trailing effect -->
+      <circle id="t1" r="2.2" fill="#1cb48c" opacity="0.55"/>
+      <circle id="t2" r="1.7" fill="#1cb48c" opacity="0.38"/>
+      <circle id="t3" r="1.2" fill="#1cb48c" opacity="0.22"/>
+
+      <!-- Disney 4-point sparkle star at orbit position, animated via JS -->
+      <g id="star-pos">
+        <!-- 4-point sparkle: two thin diamonds overlaid -->
+        <path id="sparkle-shape"
+          d="M0,-11 C0.5,-2.5 2.5,-0.5 11,0 C2.5,0.5 0.5,2.5 0,11 C-0.5,2.5 -2.5,0.5 -11,0 C-2.5,-0.5 -0.5,-2.5 0,-11 Z"
+          fill="#1cb48c"
+          style="filter: drop-shadow(0 0 4px rgba(28,180,140,0.8))"/>
+        <!-- Small center diamond for extra sparkle -->
+        <path
+          d="M0,-5 C0.3,-1 1,-0.3 5,0 C1,0.3 0.3,1 0,5 C-0.3,1 -1,0.3 -5,0 C-1,-0.3 -0.3,-1 0,-5 Z"
+          fill="white" opacity="0.7"/>
+      </g>
+
+    </svg>
+  </div>
+
+  <!-- Rule -->
+  <div class="sig-rule">
+    <div class="rule-line"></div>
+    <span class="rule-diamond">✦</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader-wrap">
+    <div class="loader-track">
+      <div class="loader-fill" id="fill"></div>
+      <div class="loader-shimmer"></div>
+    </div>
+  </div>
+
+</div>
+
+    
+
+
+<div id="fade-overlay"></div>
+
+
+    <!-- Scroll progress indicator -->
+    <div id="pg" role="progressbar" aria-hidden="true"></div>
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="header" role="banner">
+
+        <!-- Brand -->
+        <a href="/" class="brand-block" aria-label="ITQAN Tech">
+            <img src="{% static 'stor/img/itqan-logo.png' %}" alt="ITQAN Tech" class="brand-logo-image">
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileNav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Desktop navigation -->
         <nav class="nav-links" aria-label="القائمة الرئيسية">
-            <a href="/"><span>الرئيسية</span></a>
-            <a href="/products/"><span>المنتجات</span></a>
-            <a href="#footer" id="navContactLink"><span>تواصل</span></a>
-            <a href="/cart/" class="nav-cart">
-                <i class="fas fa-shopping-bag" style="font-size:12px;"></i>
+            <a href="/" id="homeLink" class="nav-active"><span>الرئيسية</span></a>
+            <a href="{% url 'stor:product_list' %}"><span>جميع المنتجات</span></a>
+            <a href="{% url 'stor:contact' %}"><span>تواصل معنا</span></a>
+            <a href="{% url 'stor:cart' %}" data-cart-link="true">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                 <span>السلة</span>
             </a>
         </nav>
 
+        <!-- Mobile nav overlay -->
+        <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="القائمة">
+            <button class="close-menu" aria-label="إغلاق القائمة">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <nav aria-label="القائمة المحمولة">
+                <a href="/" id="mobileHomeLink" class="nav-active"><span>الرئيسية</span></a>
+                <a href="{% url 'stor:product_list' %}"><span>جميع المنتجات</span></a>
+                <a href="{% url 'stor:contact' %}"><span>تواصل معنا</span></a>
+                <a href="{% url 'stor:cart' %}" data-cart-link="true">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span>السلة</span>
+                </a>
+            </nav>
+        </div>
+
     </header>
 
-    <main class="content">
+    <!-- ══════════════ MAIN ══════════════ -->
+    <main class="content" id="main-content">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="footer" id="footer">
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="footer" id="footer" role="contentinfo">
         <div class="footer-body">
 
             <div class="ft-brand">
-                <div class="ft-brand-name" dir="ltr">
-                    <span class="lt">i</span><span class="lt">T</span><span class="lo">Q</span><span
-                        class="lt">A</span><span class="lo">N</span>
-                    <span class="lw">Tech</span>
-                </div>
-                
+                <img src="{% static 'stor/img/itqan-logo.png' %}" alt="ITQAN Tech" class="ft-brand-logo-image">
+                <p class="ft-tagline">مصدرك الموثوق للاكسسوارات التقنية عالية الجودة.</p>
             </div>
 
             <div>
                 <span class="ft-col-label">روابط سريعة</span>
                 <div class="ft-links">
                     <a href="/">الرئيسية</a>
-                    <a href="/products/">المنتجات</a>
-                    <a href="/contact/">تواصل معنا</a>
-                    <a href="/cart/">السلة</a>
+                    <a href="{% url 'stor:product_list' %}">المنتجات</a>
+                    <a href="{% url 'stor:cart' %}">السلة</a>
                 </div>
             </div>
 
             <div>
-                <span class="ft-col-label">تابعنا</span>
+                <span class="ft-col-label">تواصل معنا</span>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/itqantech/" aria-label="Facebook" target="_blank"
-                        rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/201050032925" aria-label="WhatsApp" target="_blank"
-                        rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/itqantech/"
+                       aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://wa.me/201050032925"
+                       aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
 
         </div>
 
         <div class="footer-bar">
-            <p>© 2026 ITQAN Tech — جميع الحقوق محفوظة</p>
-            <p>Made with ✦────────𝓜𝓾𝓼𝓽𝓪𝓯𝓪 𝓐𝓫𝓭𝓪𝓵𝔀𝓱𝓪𝓫</p>
+            <p>&#169; 2026 ITQAN Tech &mdash; جميع الحقوق محفوظة</p>
+            <p> 𝓘𝓣𝓠𝓐𝓝𝓣𝓔𝓒𝓗  ✦───────────────𝓐𝓵𝓪𝓼𝓮𝓮𝓵</p>
         </div>
     </footer>
 
+    <!-- App JS -->
     <script src="{% static 'stor/js/main.js' %}"></script>
-</body>
+    <script src="{% static 'stor/js/splash.js' %}"></script>
 
+</body>
 </html>
