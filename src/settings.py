@@ -80,17 +80,12 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # ---------- Database (with SSL for production) ----------
 # settings.py مؤقتًا
 # settings.py
-import dj_database_url
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mini_store',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 # ---------- Password Validation ----------
 AUTH_PASSWORD_VALIDATORS = [
