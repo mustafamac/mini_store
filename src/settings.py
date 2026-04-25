@@ -77,7 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'src.wsgi.application'
 
 # ---------- Database (with SSL for production) ----------
-# settings.py مؤقتًا
+import dj_database_url
 DATABASE_URL = os.environ.get('DATABASE_URL', '').replace('postgres://', 'postgresql://', 1)
 
 DATABASES = {
