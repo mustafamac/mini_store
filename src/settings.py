@@ -78,22 +78,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'src.wsgi.application'
 
 # ---------- Database (with SSL for production) ----------
-import os
-import dj_database_url
-
-DATABASE_URL = os.environ.get('DATABASE_URL')
+# settings.py مؤقتًا
+# settings.py
 DATABASES = {
-    'default': dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
-        conn_health_checks=True,
-        ssl_require=IS_PROD,
-    )
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mini_store',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
-if IS_PROD and not DATABASE_URL:
-    raise ValueError("DATABASE_URL is required in production!")
-
 # ---------- Password Validation ----------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

@@ -1,0 +1,2359 @@
+[
+{
+  "model": "stor.category",
+  "pk": 1,
+  "fields": {
+    "category": "ماوس وكيبورد"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 2,
+  "fields": {
+    "category": "سماعات وهيدسيت"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 3,
+  "fields": {
+    "category": "شاشات"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 4,
+  "fields": {
+    "category": "كاميرات ويب"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 5,
+  "fields": {
+    "category": "هاردات وفلاشات"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 6,
+  "fields": {
+    "category": "حوامل وكابلات"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 7,
+  "fields": {
+    "category": "كروت شبكة وراوتر"
+  }
+},
+{
+  "model": "stor.category",
+  "pk": 8,
+  "fields": {
+    "category": "مراوح وتبريد"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 8,
+  "fields": {
+    "category": 5,
+    "company": "Western Digital"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 11,
+  "fields": {
+    "category": 7,
+    "company": "TP-Link"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "company": "SteelSeries"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 5,
+  "fields": {
+    "category": 3,
+    "company": "Samsung"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "company": "Razer"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "company": "Logitech"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 7,
+  "fields": {
+    "category": 4,
+    "company": "Logitech"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 6,
+  "fields": {
+    "category": 3,
+    "company": "LG"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 9,
+  "fields": {
+    "category": 5,
+    "company": "Kingston"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 3,
+  "fields": {
+    "category": 2,
+    "company": "HyperX"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 12,
+  "fields": {
+    "category": 8,
+    "company": "Cooler Master"
+  }
+},
+{
+  "model": "stor.company",
+  "pk": 10,
+  "fields": {
+    "category": 6,
+    "company": "Anker"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "company": 7,
+    "product_name": "Logitech MX Master 3S ماوس لاسلكي",
+    "product_description": "ماوس لاسلكي احترافي بدقة 8000 DPI وعجلة تمرير مغناطيسية. مثالي للتصميم والبرمجة. يعمل 70 يوم على شحنة واحدة. متوفر على جوميا مصر.",
+    "orignal_price": 1850,
+    "discount_percentage": 10,
+    "product_image": "product_images/logitech-mx-master-3s.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "logitech-mx-master-3s",
+    "created_at": "2026-04-25T03:40:04.571Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "company": 2,
+    "product_name": "Razer DeathAdder V3 ماوس جيمنج",
+    "product_description": "ماوس جيمنج خفيف الوزن 59 جرام بدقة 30,000 DPI وسرعة استجابة 0.2ms. الخيار الأول للاعبين المحترفين.",
+    "orignal_price": 1650,
+    "discount_percentage": 15,
+    "product_image": "product_images/razer-deathadder-v3.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": true,
+    "slug": "razer-deathadder-v3",
+    "created_at": "2026-04-25T03:40:11.070Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "company": 7,
+    "product_name": "Logitech G Pro X Mechanical Keyboard",
+    "product_description": "كيبورد ميكانيكي احترافي TKL بمفاتيح GX Blue قابلة للتبديل. يستخدمه محترفو البطولات العالمية.",
+    "orignal_price": 2800,
+    "discount_percentage": 10,
+    "product_image": "product_images/logitech-g-pro-x-mechanical-keyboard.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "logitech-g-pro-x-mechanical-keyboard",
+    "created_at": "2026-04-25T03:40:17.766Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "company": 2,
+    "product_name": "Razer BlackWidow V4 Keyboard ميكانيكي",
+    "product_description": "كيبورد ميكانيكي بمفاتيح Razer Green الشهيرة وإضاءة Chroma RGB بـ 16.8 مليون لون. مع عجلة تحكم بالصوت.",
+    "orignal_price": 3200,
+    "discount_percentage": 0,
+    "product_image": "product_images/razer-blackwidow-v4-keyboard.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "razer-blackwidow-v4-keyboard",
+    "created_at": "2026-04-25T03:40:23.922Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "company": 7,
+    "product_name": "Logitech G840 XL Gaming Mouse Pad",
+    "product_description": "ماوس باد XL يغطي المكتب بالكامل 90×40 سم. سطح ناعم لأقصى دقة وقاعدة مطاط مانعة للانزلاق.",
+    "orignal_price": 550,
+    "discount_percentage": 20,
+    "product_image": "product_images/logitech-g840-xl-gaming-mouse-pad.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "logitech-g840-xl-gaming-mouse-pad",
+    "created_at": "2026-04-25T03:40:29.785Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "company": 3,
+    "product_name": "HyperX Cloud II Wireless هيدسيت جيمنج",
+    "product_description": "هيدسيت جيمنج لاسلكي بصوت 7.1 Surround وبطارية 30 ساعة. ميكروفون معزول للضوضاء بجودة حسابية عالية.",
+    "orignal_price": 2200,
+    "discount_percentage": 15,
+    "product_image": "product_images/hyperx-cloud-ii-wireless.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "hyperx-cloud-ii-wireless",
+    "created_at": "2026-04-25T03:40:37.465Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "company": 4,
+    "product_name": "SteelSeries Arctis Nova Pro هيدسيت",
+    "product_description": "هيدسيت احترافي بنظام ANC وميكروفون ClearCast قابل للسحب. نظام شحن مزدوج للاستخدام المتواصل.",
+    "orignal_price": 4500,
+    "discount_percentage": 10,
+    "product_image": "product_images/steelseries-arctis-nova-pro.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "steelseries-arctis-nova-pro",
+    "created_at": "2026-04-25T03:40:43.454Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "company": 3,
+    "product_name": "HyperX Cloud Stinger 2 سماعة جيمنج",
+    "product_description": "هيدسيت جيمنج بسعر مناسب وجودة صوت ممتازة. ميكروفون قابل للتعديل مع زر كتم صوت على الكأس.",
+    "orignal_price": 899,
+    "discount_percentage": 25,
+    "product_image": "product_images/hyperx-cloud-stinger-2.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "hyperx-cloud-stinger-2",
+    "created_at": "2026-04-25T03:40:50.449Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "company": 5,
+    "product_name": "Samsung 27 inch IPS FHD 165Hz شاشة جيمنج",
+    "product_description": "شاشة جيمنج 27 بوصة IPS بمعدل تحديث 165Hz واستجابة 1ms MPRT. تقنية AMD FreeSync Premium لصورة سلسة.",
+    "orignal_price": 4200,
+    "discount_percentage": 10,
+    "product_image": "product_images/samsung-27-inch-ips-fhd-165hz.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "samsung-27-inch-ips-fhd-165hz",
+    "created_at": "2026-04-25T03:40:57.063Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 10,
+  "fields": {
+    "category": 3,
+    "company": 6,
+    "product_name": "LG 24 inch IPS FHD 75Hz شاشة مكتب",
+    "product_description": "شاشة مكتبية 24 بوصة IPS بألوان حقيقية 99% sRGB. مثالية للعمل والتصميم بميزة Reader Mode.",
+    "orignal_price": 2800,
+    "discount_percentage": 5,
+    "product_image": "product_images/lg-24-inch-ips-fhd-75hz.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "lg-24-inch-ips-fhd-75hz",
+    "created_at": "2026-04-25T03:41:03.550Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 11,
+  "fields": {
+    "category": 4,
+    "company": 7,
+    "product_name": "Logitech C920 HD Pro Webcam 1080p",
+    "product_description": "كاميرا ويب احترافية 1080p 30fps مع ميكروفون ستيريو مدمج. مثالية للاجتماعات والستريم ومكالمات الفيديو.",
+    "orignal_price": 1600,
+    "discount_percentage": 10,
+    "product_image": "product_images/logitech-c920-hd-pro-webcam-1080p.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": true,
+    "slug": "logitech-c920-hd-pro-webcam-1080p",
+    "created_at": "2026-04-25T03:41:11.132Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 12,
+  "fields": {
+    "category": 4,
+    "company": 7,
+    "product_name": "Logitech StreamCam USB-C كاميرا ستريم",
+    "product_description": "كاميرا ستريم احترافية 1080p 60fps بمنفذ USB-C. AI Face Tracking لتتبع وجهك تلقائياً. الخيار الأول للكونتنت كريتورز.",
+    "orignal_price": 2400,
+    "discount_percentage": 15,
+    "product_image": "product_images/logitech-streamcam-usb-c.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "logitech-streamcam-usb-c",
+    "created_at": "2026-04-25T03:41:19.275Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 13,
+  "fields": {
+    "category": 5,
+    "company": 8,
+    "product_name": "WD Blue SSD 1TB SATA هارد داخلي",
+    "product_description": "هارد SSD داخلي 1TB بسرعة قراءة 560 MB/s. يرفع أداء الكمبيوتر بشكل ملحوظ مع ضمان 5 سنوات.",
+    "orignal_price": 1900,
+    "discount_percentage": 10,
+    "product_image": "product_images/wd-blue-ssd-1tb-sata.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "wd-blue-ssd-1tb-sata",
+    "created_at": "2026-04-25T03:41:27.377Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 14,
+  "fields": {
+    "category": 5,
+    "company": 9,
+    "product_name": "Kingston 32GB USB 3.2 فلاشة سريعة",
+    "product_description": "فلاشة USB 3.2 بسرعة نقل 200 MB/s بتصميم معدني متين ومدمج. ضمان مدى الحياة من كينجستون.",
+    "orignal_price": 320,
+    "discount_percentage": 0,
+    "product_image": "product_images/kingston-32gb-usb-32.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "kingston-32gb-usb-32",
+    "created_at": "2026-04-25T03:41:34.519Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 15,
+  "fields": {
+    "category": 5,
+    "company": 8,
+    "product_name": "WD My Passport 2TB هارد خارجي",
+    "product_description": "هارد خارجي محمول 2TB بتصميم أنيق وحماية بكلمة سر وتشفير AES 256-bit. USB 3.0 للنقل السريع.",
+    "orignal_price": 2100,
+    "discount_percentage": 5,
+    "product_image": "product_images/wd-my-passport-2tb.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "wd-my-passport-2tb",
+    "created_at": "2026-04-25T03:41:41.033Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 16,
+  "fields": {
+    "category": 6,
+    "company": 10,
+    "product_name": "Anker 7-in-1 USB-C Hub هاب متعدد",
+    "product_description": "هاب USB-C 7 في 1 مع HDMI 4K و USB 3.0 و SD Card و شحن 100W. مثالي للابتوب.",
+    "orignal_price": 850,
+    "discount_percentage": 15,
+    "product_image": "product_images/anker-7-in-1-usb-c-hub.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "anker-7-in-1-usb-c-hub",
+    "created_at": "2026-04-25T03:41:47.551Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 17,
+  "fields": {
+    "category": 6,
+    "company": 10,
+    "product_name": "Anker كابل USB-C شحن سريع 2 متر",
+    "product_description": "كابل USB-C بطول 2 متر يدعم شحن 60W وسرعة نقل بيانات 480 Mbps. مغلف بنايلون متين ضد الالتواء.",
+    "orignal_price": 180,
+    "discount_percentage": 0,
+    "product_image": "product_images/anker-usb-c-2.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "anker-usb-c-2",
+    "created_at": "2026-04-25T03:41:53.707Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 18,
+  "fields": {
+    "category": 7,
+    "company": 11,
+    "product_name": "TP-Link Archer AX21 راوتر WiFi 6",
+    "product_description": "راوتر WiFi 6 بسرعة 1800 Mbps مع 4 هوائيات خارجية. يدعم 80 جهاز في آن واحد بتقنية OFDMA.",
+    "orignal_price": 1650,
+    "discount_percentage": 10,
+    "product_image": "product_images/tp-link-archer-ax21-wifi-6.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "tp-link-archer-ax21-wifi-6",
+    "created_at": "2026-04-25T03:42:00.344Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 19,
+  "fields": {
+    "category": 7,
+    "company": 11,
+    "product_name": "TP-Link USB WiFi Adapter كرت شبكة",
+    "product_description": "كرت شبكة WiFi USB بسرعة 300 Mbps. توصيل ولعب بدون إعداد. يعمل على Windows و Linux.",
+    "orignal_price": 280,
+    "discount_percentage": 0,
+    "product_image": "product_images/tp-link-usb-wifi-adapter.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "tp-link-usb-wifi-adapter",
+    "created_at": "2026-04-25T03:42:07.028Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 20,
+  "fields": {
+    "category": 8,
+    "company": 12,
+    "product_name": "Cooler Master Hyper 212 مروحة معالج",
+    "product_description": "مروحة معالج Tower بـ 4 هيت بايب مباشرة وأداء تبريد ممتاز للمعالجات حتى 150W. تثبيت سهل.",
+    "orignal_price": 950,
+    "discount_percentage": 15,
+    "product_image": "product_images/cooler-master-hyper-212.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "cooler-master-hyper-212",
+    "created_at": "2026-04-25T03:42:13.428Z"
+  }
+},
+{
+  "model": "stor.product",
+  "pk": 21,
+  "fields": {
+    "category": 8,
+    "company": 12,
+    "product_name": "Cooler Master كيس كمبيوتر MasterBox Q300L",
+    "product_description": "كيس كمبيوتر Micro-ATX بجانب شبكي لتدفق هواء ممتاز. يدعم 3 مراوح 120mm وراديتر 240mm.",
+    "orignal_price": 1400,
+    "discount_percentage": 10,
+    "product_image": "product_images/cooler-master-masterbox-q300l.jpg",
+    "is_stock": true,
+    "is_active": true,
+    "is_hot_sale": false,
+    "sale_end_time": null,
+    "has_gift_wrap": false,
+    "slug": "cooler-master-masterbox-q300l",
+    "created_at": "2026-04-25T03:42:19.513Z"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "image": "feature_product_images/77791ea4dabe4d0d86cdf174f3267021.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "image": "feature_product_images/ade3e369b02f4f508dc96b9c69cec150.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "image": "feature_product_images/70ad518183fe45e39cacd8d3c69199c1.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "image": "feature_product_images/66dc01b5cc1a4117bcbc52b21e52a98b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "image": "feature_product_images/f9c9310244be4dcd828fb2a6b1881c0e.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "image": "feature_product_images/e9016098dc3d43d9aa4e67331281336d.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 7,
+  "fields": {
+    "product": 3,
+    "image": "feature_product_images/16b77bed382547109e4bbd311414f7fb.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "image": "feature_product_images/e256b97fae2648fb88773e3d5c02d2ac.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "image": "feature_product_images/af461c188a9140ca90728f8a5797aa10.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "image": "feature_product_images/ce7ae81cc15f454aa169524301b399b5.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "image": "feature_product_images/3980b347d8f54eeb9da719e1bedf50f8.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 12,
+  "fields": {
+    "product": 4,
+    "image": "feature_product_images/92fafce0ecc349a2a0252c83ddb01762.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 13,
+  "fields": {
+    "product": 5,
+    "image": "feature_product_images/ca7f689e7c9d4eac946d601a3f74e70b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 14,
+  "fields": {
+    "product": 5,
+    "image": "feature_product_images/ec5e6960ab56412baa0ee66060adc01b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 15,
+  "fields": {
+    "product": 5,
+    "image": "feature_product_images/2c57181173454a449f5772f6508caf3e.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 16,
+  "fields": {
+    "product": 6,
+    "image": "feature_product_images/cf5673f10df04750b2c43286d77e7c87.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 17,
+  "fields": {
+    "product": 6,
+    "image": "feature_product_images/26426e1c1c1146bca7bfc943496a34e5.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 18,
+  "fields": {
+    "product": 6,
+    "image": "feature_product_images/e44ff7d83025446c9ca5cf33928512ce.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 19,
+  "fields": {
+    "product": 7,
+    "image": "feature_product_images/05ed30f8b4cb45959d3be7c7e67092e4.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 20,
+  "fields": {
+    "product": 7,
+    "image": "feature_product_images/54eb1a40d9e54bb398a18e7a5f71187f.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 21,
+  "fields": {
+    "product": 7,
+    "image": "feature_product_images/c4ae68dd934b452b847ab3bb7b7a8d49.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 22,
+  "fields": {
+    "product": 8,
+    "image": "feature_product_images/676ea6004fbb47f591de4d4c153a965f.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 23,
+  "fields": {
+    "product": 8,
+    "image": "feature_product_images/4a0c968b4f9f4597bd037b35af1bcb70.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 24,
+  "fields": {
+    "product": 8,
+    "image": "feature_product_images/8a73a7822d9d4419bb2bd52df4425103.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 25,
+  "fields": {
+    "product": 9,
+    "image": "feature_product_images/ebd0d6ba0e2c4a4f9ccc1331b443711d.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 26,
+  "fields": {
+    "product": 9,
+    "image": "feature_product_images/b05f80be247d4262aedb15ca3bd0914c.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 27,
+  "fields": {
+    "product": 9,
+    "image": "feature_product_images/83e938239f6d47dea9877a7587632d03.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 28,
+  "fields": {
+    "product": 10,
+    "image": "feature_product_images/b4ff373fb4334cd78d9dec5e80cb0d4d.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 29,
+  "fields": {
+    "product": 10,
+    "image": "feature_product_images/03948813e82f4a1684856027a4dc0470.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 30,
+  "fields": {
+    "product": 10,
+    "image": "feature_product_images/b2f71817042e4327a5dad938d6bff237.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 31,
+  "fields": {
+    "product": 11,
+    "image": "feature_product_images/01cdc9273f124dc785d883c4918fec6d.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 32,
+  "fields": {
+    "product": 11,
+    "image": "feature_product_images/7263b6c82e1a4e1cb997f11913540521.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 33,
+  "fields": {
+    "product": 11,
+    "image": "feature_product_images/e25f698e4ef54237be5c3ce2c1847197.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 34,
+  "fields": {
+    "product": 12,
+    "image": "feature_product_images/e75b8dc504344587ab3036323444c383.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 35,
+  "fields": {
+    "product": 12,
+    "image": "feature_product_images/3fd82f6874f14b91919ab8094d1f6496.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 36,
+  "fields": {
+    "product": 12,
+    "image": "feature_product_images/5c6565ca58d84a73aa39dbd9b8aa054b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 37,
+  "fields": {
+    "product": 13,
+    "image": "feature_product_images/2a7eb8653baf4bb5a3fd9739457713cb.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 38,
+  "fields": {
+    "product": 13,
+    "image": "feature_product_images/1cb4e88adc8b4f46bbee1820dc943496.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 39,
+  "fields": {
+    "product": 13,
+    "image": "feature_product_images/eab44008f3f84f42ac3b7bc348c55eba.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 40,
+  "fields": {
+    "product": 14,
+    "image": "feature_product_images/d5cf3492469e4ff39fe2fca2db976b77.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 41,
+  "fields": {
+    "product": 14,
+    "image": "feature_product_images/42884db438e8407a82f1d2d34f0df45b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 42,
+  "fields": {
+    "product": 14,
+    "image": "feature_product_images/9e212263eb004cdc886bc459a2694d1b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 43,
+  "fields": {
+    "product": 15,
+    "image": "feature_product_images/1fa3af9d34b545a3972a23f664ad5aad.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 44,
+  "fields": {
+    "product": 15,
+    "image": "feature_product_images/992b0d93b41b4871b38c601d6c59585c.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 45,
+  "fields": {
+    "product": 15,
+    "image": "feature_product_images/dbab411857954194a396cd7a498abba1.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 46,
+  "fields": {
+    "product": 16,
+    "image": "feature_product_images/e67249a99477490a99df8762d76cbade.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 47,
+  "fields": {
+    "product": 16,
+    "image": "feature_product_images/780e67bbb38e4a3395273e85d889d531.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 48,
+  "fields": {
+    "product": 16,
+    "image": "feature_product_images/214bc13c28bf41e7ac31ff438501b211.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 49,
+  "fields": {
+    "product": 17,
+    "image": "feature_product_images/96b42abce8a14ec6a8857686bf0c57f4.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 50,
+  "fields": {
+    "product": 17,
+    "image": "feature_product_images/8f47e4b27ef348789e0a4480749aaa23.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 51,
+  "fields": {
+    "product": 17,
+    "image": "feature_product_images/97d9ec7bf28141c2807800cdbc5ab6d8.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 52,
+  "fields": {
+    "product": 18,
+    "image": "feature_product_images/2eaad3b544564a238e127831f87120fb.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 53,
+  "fields": {
+    "product": 18,
+    "image": "feature_product_images/c82259a3d9904afdaad80054a0431315.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 54,
+  "fields": {
+    "product": 18,
+    "image": "feature_product_images/123471efec3b4cfe9b9731bab9040c1c.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 55,
+  "fields": {
+    "product": 19,
+    "image": "feature_product_images/02d7063f5ae245abb591fd80c8e539cc.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 56,
+  "fields": {
+    "product": 19,
+    "image": "feature_product_images/a77e55fcca2b4cd18762d4fb1040bf31.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 57,
+  "fields": {
+    "product": 19,
+    "image": "feature_product_images/a12b0f5add94474dadabc7e45410488e.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 58,
+  "fields": {
+    "product": 20,
+    "image": "feature_product_images/a4cdf19097ff4b87afb9b5729e40da4b.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 59,
+  "fields": {
+    "product": 20,
+    "image": "feature_product_images/54037cfb832943be9d3d4844c3759d8c.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 60,
+  "fields": {
+    "product": 20,
+    "image": "feature_product_images/c6ccbc7977674f35b4964e3fe305b4e1.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 61,
+  "fields": {
+    "product": 21,
+    "image": "feature_product_images/9d2eb9c37b0a4b58bbed3c78cacb067d.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 62,
+  "fields": {
+    "product": 21,
+    "image": "feature_product_images/7a87f9093665431592b695d90a9dadab.jpg"
+  }
+},
+{
+  "model": "stor.featureproductimage",
+  "pk": 63,
+  "fields": {
+    "product": 21,
+    "image": "feature_product_images/aa15e786b5dc40caa1825a21dd9e7d76.jpg"
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "feature": "دقة 8000 DPI قابلة للتعديل",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "feature": "اتصال Bluetooth و USB Receiver",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "feature": "عجلة تمرير مغناطيسية صامتة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "feature": "بطارية تدوم 70 يوماً",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 5,
+  "fields": {
+    "product": 1,
+    "feature": "متوافق مع Windows و Mac",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "feature": "دقة 30,000 DPI",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "feature": "وزن 59 جرام فقط",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 8,
+  "fields": {
+    "product": 2,
+    "feature": "زر ضغط بضمان 90 مليون نقرة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 9,
+  "fields": {
+    "product": 2,
+    "feature": "إضاءة Razer Chroma RGB",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 10,
+  "fields": {
+    "product": 2,
+    "feature": "كابل Speedflex مرن",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 11,
+  "fields": {
+    "product": 3,
+    "feature": "مفاتيح GX قابلة للتبديل",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 12,
+  "fields": {
+    "product": 3,
+    "feature": "تصميم TKL مدمج",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 13,
+  "fields": {
+    "product": 3,
+    "feature": "إضاءة RGB لكل مفتاح",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 14,
+  "fields": {
+    "product": 3,
+    "feature": "كابل مفصول",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 15,
+  "fields": {
+    "product": 3,
+    "feature": "ضمان سنتين",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 16,
+  "fields": {
+    "product": 4,
+    "feature": "مفاتيح Razer Green الميكانيكية",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 17,
+  "fields": {
+    "product": 4,
+    "feature": "إضاءة Chroma RGB",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 18,
+  "fields": {
+    "product": 4,
+    "feature": "عجلة تحكم بالصوت",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 19,
+  "fields": {
+    "product": 4,
+    "feature": "مسند راحة مغناطيسي",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 20,
+  "fields": {
+    "product": 4,
+    "feature": "USB Pass-through",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 21,
+  "fields": {
+    "product": 5,
+    "feature": "مقاس XL 90x40 سم",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 22,
+  "fields": {
+    "product": 5,
+    "feature": "سطح قماشي ناعم",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 23,
+  "fields": {
+    "product": 5,
+    "feature": "قاعدة مطاط مانعة للانزلاق",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 24,
+  "fields": {
+    "product": 5,
+    "feature": "حواف مخيطة لمنع التآكل",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 25,
+  "fields": {
+    "product": 5,
+    "feature": "مناسب لجميع أنواع الماوس",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 26,
+  "fields": {
+    "product": 6,
+    "feature": "صوت 7.1 Virtual Surround",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 27,
+  "fields": {
+    "product": 6,
+    "feature": "بطارية 30 ساعة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 28,
+  "fields": {
+    "product": 6,
+    "feature": "ميكروفون معزول للضوضاء",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 29,
+  "fields": {
+    "product": 6,
+    "feature": "وسادات ذاكرة مريحة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 30,
+  "fields": {
+    "product": 6,
+    "feature": "تردد 10Hz - 21kHz",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 31,
+  "fields": {
+    "product": 7,
+    "feature": "Active Noise Cancellation",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 32,
+  "fields": {
+    "product": 7,
+    "feature": "ميكروفون ClearCast",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 33,
+  "fields": {
+    "product": 7,
+    "feature": "نظام بطارية مزدوج",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 34,
+  "fields": {
+    "product": 7,
+    "feature": "DAC خارجي عالي الجودة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 35,
+  "fields": {
+    "product": 7,
+    "feature": "متوافق مع PC و PlayStation",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 36,
+  "fields": {
+    "product": 8,
+    "feature": "درايفر 40mm عالي الدقة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 37,
+  "fields": {
+    "product": 8,
+    "feature": "ميكروفون قابل للكسر 90 درجة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 38,
+  "fields": {
+    "product": 8,
+    "feature": "زر كتم صوت على الكأس",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 39,
+  "fields": {
+    "product": 8,
+    "feature": "وزن خفيف 275 جرام",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 40,
+  "fields": {
+    "product": 8,
+    "feature": "توصيل 3.5mm و USB",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 41,
+  "fields": {
+    "product": 9,
+    "feature": "165Hz refresh rate",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 42,
+  "fields": {
+    "product": 9,
+    "feature": "1ms MPRT response",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 43,
+  "fields": {
+    "product": 9,
+    "feature": "AMD FreeSync Premium",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 44,
+  "fields": {
+    "product": 9,
+    "feature": "HDR10 support",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 45,
+  "fields": {
+    "product": 9,
+    "feature": "Eye Saver Mode",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 46,
+  "fields": {
+    "product": 10,
+    "feature": "لوحة IPS 99% sRGB",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 47,
+  "fields": {
+    "product": 10,
+    "feature": "Reader Mode للعين",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 48,
+  "fields": {
+    "product": 10,
+    "feature": "OnScreen Control",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 49,
+  "fields": {
+    "product": 10,
+    "feature": "HDMI و DisplayPort",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 50,
+  "fields": {
+    "product": 10,
+    "feature": "قابلة للتعديل في الارتفاع",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 51,
+  "fields": {
+    "product": 11,
+    "feature": "دقة 1080p Full HD",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 52,
+  "fields": {
+    "product": 11,
+    "feature": "ميكروفون ستيريو مدمج",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 53,
+  "fields": {
+    "product": 11,
+    "feature": "تركيز تلقائي",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 54,
+  "fields": {
+    "product": 11,
+    "feature": "ضغط H.264",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 55,
+  "fields": {
+    "product": 11,
+    "feature": "متوافق مع Zoom و Teams",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 56,
+  "fields": {
+    "product": 12,
+    "feature": "1080p 60fps",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 57,
+  "fields": {
+    "product": 12,
+    "feature": "AI Face Tracking",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 58,
+  "fields": {
+    "product": 12,
+    "feature": "منفذ USB-C",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 59,
+  "fields": {
+    "product": 12,
+    "feature": "تركيز ذكي تلقائي",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 60,
+  "fields": {
+    "product": 12,
+    "feature": "تثبيت أفقي وعمودي",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 61,
+  "fields": {
+    "product": 13,
+    "feature": "سرعة قراءة 560 MB/s",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 62,
+  "fields": {
+    "product": 13,
+    "feature": "سرعة كتابة 530 MB/s",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 63,
+  "fields": {
+    "product": 13,
+    "feature": "ضمان 5 سنوات",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 64,
+  "fields": {
+    "product": 13,
+    "feature": "واجهة SATA III",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 65,
+  "fields": {
+    "product": 13,
+    "feature": "مناسب للابتوب والديسكتوب",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 66,
+  "fields": {
+    "product": 14,
+    "feature": "USB 3.2 Gen 1",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 67,
+  "fields": {
+    "product": 14,
+    "feature": "سرعة قراءة 200 MB/s",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 68,
+  "fields": {
+    "product": 14,
+    "feature": "تصميم معدني مدمج",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 69,
+  "fields": {
+    "product": 14,
+    "feature": "ضمان مدى الحياة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 70,
+  "fields": {
+    "product": 14,
+    "feature": "متوافق مع Windows و Mac",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 71,
+  "fields": {
+    "product": 15,
+    "feature": "سعة 2TB",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 72,
+  "fields": {
+    "product": 15,
+    "feature": "تشفير AES 256-bit",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 73,
+  "fields": {
+    "product": 15,
+    "feature": "USB 3.0",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 74,
+  "fields": {
+    "product": 15,
+    "feature": "ضمان 3 سنوات",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 75,
+  "fields": {
+    "product": 15,
+    "feature": "متوافق مع PC و Mac",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 76,
+  "fields": {
+    "product": 16,
+    "feature": "HDMI 4K@30Hz",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 77,
+  "fields": {
+    "product": 16,
+    "feature": "3 منافذ USB 3.0",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 78,
+  "fields": {
+    "product": 16,
+    "feature": "SD و MicroSD Card",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 79,
+  "fields": {
+    "product": 16,
+    "feature": "شحن 100W PD",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 80,
+  "fields": {
+    "product": 16,
+    "feature": "توصيل فوري بدون درايفر",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 81,
+  "fields": {
+    "product": 17,
+    "feature": "دعم شحن 60W",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 82,
+  "fields": {
+    "product": 17,
+    "feature": "نقل بيانات 480 Mbps",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 83,
+  "fields": {
+    "product": 17,
+    "feature": "طول 2 متر",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 84,
+  "fields": {
+    "product": 17,
+    "feature": "غلاف نايلون متين",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 85,
+  "fields": {
+    "product": 17,
+    "feature": "ضمان 18 شهراً",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 86,
+  "fields": {
+    "product": 18,
+    "feature": "WiFi 6 AX1800",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 87,
+  "fields": {
+    "product": 18,
+    "feature": "دعم 80 جهاز متصل",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 88,
+  "fields": {
+    "product": 18,
+    "feature": "تقنية OFDMA",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 89,
+  "fields": {
+    "product": 18,
+    "feature": "4 هوائيات خارجية",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 90,
+  "fields": {
+    "product": 18,
+    "feature": "إعداد سهل عبر تطبيق",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 91,
+  "fields": {
+    "product": 19,
+    "feature": "سرعة 300 Mbps",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 92,
+  "fields": {
+    "product": 19,
+    "feature": "USB 2.0",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 93,
+  "fields": {
+    "product": 19,
+    "feature": "Plug and Play",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 94,
+  "fields": {
+    "product": 19,
+    "feature": "هوائي قابل للطي",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 95,
+  "fields": {
+    "product": 19,
+    "feature": "متوافق مع Windows 11/10/7",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 96,
+  "fields": {
+    "product": 20,
+    "feature": "4 Heat Pipes مباشرة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 97,
+  "fields": {
+    "product": 20,
+    "feature": "قدرة تبريد 150W TDP",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 98,
+  "fields": {
+    "product": 20,
+    "feature": "مروحة PWM 120mm",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 99,
+  "fields": {
+    "product": 20,
+    "feature": "متوافق Intel و AMD",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 100,
+  "fields": {
+    "product": 20,
+    "feature": "تركيب بدون أدوات",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 101,
+  "fields": {
+    "product": 21,
+    "feature": "هيكل Micro-ATX",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 102,
+  "fields": {
+    "product": 21,
+    "feature": "جانب شبكي للتهوية",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 103,
+  "fields": {
+    "product": 21,
+    "feature": "يدعم 3 مراوح 120mm",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 104,
+  "fields": {
+    "product": 21,
+    "feature": "راديتر 240mm في الأمام",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.productdescription",
+  "pk": 105,
+  "fields": {
+    "product": 21,
+    "feature": "إدارة كابلات مرتبة",
+    "product_description": "",
+    "product_image": ""
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:40:09.621Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:40:15.892Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "name": "أحمد محمد",
+    "rating": 5,
+    "review": "منتج ممتاز وصل بسرعة. الجودة أفضل من توقعاتي وسيشتغل معايا من أول لحظة.",
+    "created_at": "2026-04-25T03:40:22.105Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "name": "محمود حسن",
+    "rating": 5,
+    "review": "اشتريته من جوميا وأنا سعيد جداً. المنتج أصلي 100%.",
+    "created_at": "2026-04-25T03:40:28.122Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 5,
+  "fields": {
+    "product": 5,
+    "name": "نورا خالد",
+    "rating": 4,
+    "review": "الجودة ممتازة والتغليف كان رائع. هشتري تاني من نفس المتجر.",
+    "created_at": "2026-04-25T03:40:35.851Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 6,
+  "fields": {
+    "product": 6,
+    "name": "أحمد محمد",
+    "rating": 5,
+    "review": "منتج ممتاز وصل بسرعة. الجودة أفضل من توقعاتي وسيشتغل معايا من أول لحظة.",
+    "created_at": "2026-04-25T03:40:41.994Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 7,
+  "fields": {
+    "product": 7,
+    "name": "سارة علي",
+    "rating": 4,
+    "review": "جيد جداً والسعر مناسب. التوصيل كان سريع. أنصح به بشدة.",
+    "created_at": "2026-04-25T03:40:48.500Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 8,
+  "fields": {
+    "product": 8,
+    "name": "نورا خالد",
+    "rating": 4,
+    "review": "الجودة ممتازة والتغليف كان رائع. هشتري تاني من نفس المتجر.",
+    "created_at": "2026-04-25T03:40:55.363Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 9,
+  "fields": {
+    "product": 9,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:41:01.685Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 10,
+  "fields": {
+    "product": 10,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:41:08.705Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 11,
+  "fields": {
+    "product": 11,
+    "name": "نورا خالد",
+    "rating": 4,
+    "review": "الجودة ممتازة والتغليف كان رائع. هشتري تاني من نفس المتجر.",
+    "created_at": "2026-04-25T03:41:17.215Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 12,
+  "fields": {
+    "product": 12,
+    "name": "أحمد محمد",
+    "rating": 5,
+    "review": "منتج ممتاز وصل بسرعة. الجودة أفضل من توقعاتي وسيشتغل معايا من أول لحظة.",
+    "created_at": "2026-04-25T03:41:23.565Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 13,
+  "fields": {
+    "product": 13,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:41:33.011Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 14,
+  "fields": {
+    "product": 14,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:41:39.055Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 15,
+  "fields": {
+    "product": 15,
+    "name": "ريم أحمد",
+    "rating": 3,
+    "review": "المنتج كويس بس التوصيل اتأخر شوية. الجودة مناسبة للسعر.",
+    "created_at": "2026-04-25T03:41:45.887Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 16,
+  "fields": {
+    "product": 16,
+    "name": "ريم أحمد",
+    "rating": 3,
+    "review": "المنتج كويس بس التوصيل اتأخر شوية. الجودة مناسبة للسعر.",
+    "created_at": "2026-04-25T03:41:52.219Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 17,
+  "fields": {
+    "product": 17,
+    "name": "محمود حسن",
+    "rating": 5,
+    "review": "اشتريته من جوميا وأنا سعيد جداً. المنتج أصلي 100%.",
+    "created_at": "2026-04-25T03:41:57.978Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 18,
+  "fields": {
+    "product": 18,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:42:05.303Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 19,
+  "fields": {
+    "product": 19,
+    "name": "سارة علي",
+    "rating": 4,
+    "review": "جيد جداً والسعر مناسب. التوصيل كان سريع. أنصح به بشدة.",
+    "created_at": "2026-04-25T03:42:11.749Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 20,
+  "fields": {
+    "product": 20,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:42:17.902Z"
+  }
+},
+{
+  "model": "stor.review",
+  "pk": 21,
+  "fields": {
+    "product": 21,
+    "name": "عمر إبراهيم",
+    "rating": 5,
+    "review": "أفضل منتج في الفئة دي. يستاهل كل قرش. التوصيل في 3 أيام.",
+    "created_at": "2026-04-25T03:42:24.412Z"
+  }
+}
+]
