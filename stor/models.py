@@ -28,7 +28,7 @@ class Product(models.Model):
     product_description = models.TextField()
     orignal_price = models.PositiveIntegerField(default=0)
     discount_percentage = models.PositiveIntegerField(default=0)
-    product_image = models.ImageField(upload_to='product_images/')
+    product_image = models.ImageField(upload_to='product_description_images/', blank=True, null=True)
     is_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     is_hot_sale = models.BooleanField(default=False)
