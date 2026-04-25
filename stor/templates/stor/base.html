@@ -461,8 +461,11 @@
             el.style.visibility = 'visible';
         });
     }
+    
     </script>
-
+<script>
+    var PLACE_ORDER_URL = "{% url 'stor:place_order' %}";
+</script>
     <!-- ملف الجافاسكريبت الرئيسي للموقع -->
     <script src="{% static 'stor/js/main.js' %}"></script>
 </body>
