@@ -1,0 +1,106 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #ffffff;
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse 55% 45% at 50% 50%, rgba(28,180,140,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+#splash {
+  display: flex; flex-direction: column; align-items: center;
+  opacity: 0;
+  animation: appear 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s forwards;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.logo-orbit {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 52px;
+}
+.sig-line {
+  display: flex; align-items: baseline;
+  white-space: nowrap; position: relative; z-index: 2;
+}
+.sig-it {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-size: 88px; color: #3d4d5c; line-height: 1; letter-spacing: 4px;
+}
+.sig-qan {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-size: 88px; color: #1cb48c; line-height: 1; letter-spacing: 4px;
+}
+.sig-gap { width: 18px; }
+.sig-tech {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-size: 88px; color: #3d4d5c; line-height: 1; letter-spacing: 4px;
+}
+.sig-rule {
+  display: flex; align-items: center; margin-top: 2px;
+  opacity: 0;
+  animation: ruleIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+}
+@keyframes ruleIn {
+  from { opacity: 0; transform: scaleX(0.2); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+.rule-line {
+  height: 1.5px; width: 210px;
+  background: linear-gradient(90deg, rgba(28,180,140,0.1) 0%, #1cb48c 50%, rgba(28,180,140,0.1) 100%);
+  border-radius: 99px;
+}
+.rule-diamond {
+  font-size: 14px; color: #1cb48c; margin: 0 7px;
+  animation: dGlow 2.4s ease-in-out infinite 1.2s;
+}
+@keyframes dGlow {
+  0%,100% { filter: drop-shadow(0 0 2px rgba(28,180,140,0.4)); }
+  50%      { filter: drop-shadow(0 0 8px rgba(28,180,140,0.9)); }
+}
+.loader-wrap {
+  margin-top: 30px; width: 220px;
+  opacity: 0; animation: fadeIn 0.5s ease 1s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+.loader-track {
+  width: 100%; height: 2.5px; background: #e0f4ee;
+  border-radius: 99px; position: relative; overflow: visible;
+}
+.loader-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #1cb48c 0%, #4de0b8 100%);
+  border-radius: 99px; transition: width 0.09s linear; position: relative;
+}
+.loader-fill::after {
+  content: ''; position: absolute; right: -4px; top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 8px; background: #1cb48c; border-radius: 50%;
+  animation: tipPulse 1.1s ease-in-out infinite;
+}
+@keyframes tipPulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(28,180,140,0.18), 0 0 10px 4px rgba(28,180,140,0.28); }
+  50%      { box-shadow: 0 0 0 4px rgba(28,180,140,0.28), 0 0 16px 7px rgba(28,180,140,0.48); }
+}
+.loader-shimmer {
+  position: absolute; top: 0; left: -55%; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+  border-radius: 99px; animation: sweep 2s linear infinite; pointer-events: none;
+}
+@keyframes sweep { 0% { left: -55%; } 100% { left: 110%; } }
+#fade-overlay {
+  position: fixed; inset: 0; background: #fff;
+  z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.55s ease;
+}
+#fade-overlay.active { opacity: 1; pointer-events: all; }
+#main-content {
+  display: none; position: fixed; inset: 0; background: #fff;
+  z-index: 50; align-items: center; justify-content: center;
+  font-family: 'Dancing Script', cursive; font-size: 2rem; color: #3d4d5c;
+}

@@ -12,6 +12,17 @@ from django.conf import settings
 from django.core.mail import send_mail
 from .models import Product, Category, Contact, Cart, CustomerInfo, Order
 from .forms import CustomerInfoForm
+from django.http import HttpResponse
+
+def send_test_email(request):
+    send_mail(
+        subject='Test Email',
+        message='This is a test email from Django.',
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=['recipient@example.com'],
+        fail_silently=False,
+    )
+    return HttpResponse('Email sent!')
 
 def index(request):
     """
