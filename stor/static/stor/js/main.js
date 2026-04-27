@@ -631,7 +631,7 @@
                 }
                 if (placeBtn) placeBtn.disabled = true;
 
-                fetch("{% url 'stor:place_order' %}", {
+                fetch(PLACE_ORDER_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
