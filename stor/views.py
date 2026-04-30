@@ -119,8 +119,12 @@ def cart_view(request):
 
 def add_to_cart(request, product_id):
     """
-    إضافة منتج إلى السلة (via AJAX أو POST)
+    إضافة منتج إلى السلة (عبر POST فقط لأسباب أمنية)
     """
+    if request.method != 'POST':
+        from django.http import JsonResponse
+        return JsonResponse({'success': False, 'error': 'Method not allowed'}, status=405)
+    
     product = get_object_or_404(Product, id=product_id, is_active=True, is_stock=True)
     session_key = request.session.session_key
     if not session_key:

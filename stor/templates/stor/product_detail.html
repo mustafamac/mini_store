@@ -29,9 +29,12 @@
                     خصم {{ product.discount_percentage }}%
                 </div>
                 {% endif %}
-                <a href="{% url 'stor:add_to_cart' product.id %}" class="btn btn-primary detail-add-btn">
-                    <i class="fas fa-cart-plus me-2"></i>إضافة إلى السلة
-                </a>
+                <form action="{% url 'stor:add_to_cart' product.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary detail-add-btn">
+                        <i class="fas fa-cart-plus me-2"></i>إضافة إلى السلة
+                    </button>
+                </form>
             </div>
         </div>
     </div>
